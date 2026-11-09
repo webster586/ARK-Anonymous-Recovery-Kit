@@ -1,0 +1,37 @@
+/* ARK-00 Origin V0.1, limited to own section */
+#originPanel{margin:14px 0;padding:18px;border:1px solid #245d56;border-radius:12px;background:#09201e;color:#e0f6f1;max-height:75vh;overflow:auto}
+#originPanel h2{margin:0 0 8px;font-size:22px}
+#originPanel p{color:#a4c5be;line-height:1.5}
+#originPanel button{background:#164b42;border:1px solid #4d9b8b;border-radius:7px;color:#ebfff9;padding:10px 16px;margin:4px 8px 10px 0;cursor:pointer}
+#originPanel button:disabled{opacity:.4;cursor:not-allowed}
+#originState{display:block;white-space:normal;overflow-wrap:anywhere;color:#9fdccf;margin:10px 0}
+#originDetails{font-weight:600;line-height:1.5;margin:12px 0}
+#originItems{display:grid;gap:6px}
+#originItems .origin-row{border:1px solid #24564c;background:#102e2a;padding:8px 10px;border-radius:6px;overflow-wrap:anywhere}
+
+#originPatchPanel{border-top:1px solid #356b61;margin-top:16px;padding-top:14px}
+#originPatchPanel label{display:block;margin:10px 0;color:#a9d1c8}
+#originPatchPanel select{display:block;max-width:100%;width:100%;background:#12332e;color:#f1fff9;border:1px solid #3d7468;border-radius:6px;padding:9px;margin-top:4px}
+#originPatchPanel pre{max-height:260px;white-space:pre-wrap;overflow-wrap:anywhere;overflow:auto;background:#071714;color:#b6dfcf;border:1px solid #224f48;border-radius:6px;padding:12px}
+#originPatchStatus{display:block;color:#a7ddc7;padding:8px 0;overflow-wrap:anywhere}
+
+#originSwitchPanel{border:1px solid #24675e;border-radius:9px;padding:18px;margin:18px 0;background:rgba(2,30,27,.65);color:#a9e8de}
+#originSwitchPanel h3{color:#e8fffa;margin:0 0 12px}
+#originSwitchPanel label{display:block;margin:12px 0 5px}
+#originSwitchPanel select{display:block;width:100%;padding:9px;background:#062d29;border:1px solid #286d65;color:#e9fff8;border-radius:6px}
+#originSwitchPanel button{margin:12px 8px 8px 0;padding:10px 14px;color:#eafff9;background:#07534a;border:1px solid #287a6c;border-radius:5px;cursor:pointer}
+#originSwitchPanel button:disabled{opacity:.4;cursor:default}
+#originSwitchPanel pre{padding:12px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:260px;overflow-y:auto;border:1px solid #286d65}
+
+#originSafePanel{margin:16px 0;padding:14px;border:1px solid #496171;border-radius:8px;background:#111d27;color:#dce6ee}#originSafePanel h3{margin:0 0 8px}#originSafePanel pre{font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere;background:#07121b;padding:9px;border-radius:5px;max-height:210px;overflow:auto}#originSafePanel button{margin:6px 8px 8px 0}#originSafePanel p{line-height:1.5}
+#originSimplePanel{border:1px solid #197f77;border-radius:9px;padding:16px;margin:0 0 16px;background:#081e1c;color:#cce7de}
+#originSimplePanel h2{margin:0 0 16px;font-size:21px}
+#originSimplePanel .origin-current{background:#082f2a;border:1px solid #26655e;border-radius:7px;padding:12px;margin-bottom:14px}
+#originSimplePanel .origin-current strong{display:block;font-size:20px;margin-top:5px}
+#originSimplePanel label{display:block;margin:10px 0 8px;font-weight:600}
+#originSimpleVersions{width:100%;max-width:100%;padding:11px;border-radius:5px}
+#originSimpleStart{margin:14px 0 8px;min-height:42px;width:100%;font-weight:700}
+#originSimpleMessage{display:block;white-space:pre-wrap;line-height:1.5;margin:10px 0}
+#originSimpleFallback{margin-top:10px;color:#b4dfd0}
+#originAdvanced{border:1px solid #315957;border-radius:7px;padding:12px;margin:10px 0}
+#originAdvanced summary{cursor:pointer;font-size:16px;font-weight:600;padding:5px}

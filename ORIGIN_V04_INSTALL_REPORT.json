@@ -1,0 +1,7 @@
+{
+  "status": "INSTALLED_FOR_LAB_BUILD",
+  "source": "<lab-workspace>\\ARK_ORIGIN_V03",
+  "output": "<lab-workspace>\\ARK_ORIGIN_V04",
+  "no_production_changes": true,
+  "runtime_tested": false
+}

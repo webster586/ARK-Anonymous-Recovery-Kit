@@ -1,0 +1,18 @@
+{
+  "tool": "Origin V0.3 LAB installer",
+  "utc": "2026-11-03T07:27:23.695434+00:00",
+  "source": "<lab-workspace>\\ARK_ORIGIN_V023",
+  "output": "<lab-workspace>\\ARK_ORIGIN_V03",
+  "new": [
+    "src/origin_switch_ui.go",
+    "src/origin_switch_engine.py",
+    "src/ui/js/origin_switch_ui.js",
+    "START_SELECTED_LAB.ps1"
+  ],
+  "changed": [
+    "src/main.go",
+    "src/ui/index.html",
+    "src/ui/css/origin.css"
+  ],
+  "note": "Keine bestehende Installation oder ZIP-Datei geaendert; Windows-Laufzeitpruefung ausstehend."
+}

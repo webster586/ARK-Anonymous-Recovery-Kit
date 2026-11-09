@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#081012">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>ARK // Control Deck v1.4.5.3</title>
+<link rel="stylesheet" href="css/ark-core.css">
+<link rel="stylesheet" href="css/origin.css">
+</head>
+<body>
+<div class="app">
+ <header class="topbar">
+  <div class="brand"><div class="emblem">A</div><div class="brandname">ARK<small>AUTONOMOUS RECOVERY KIT</small></div></div>
+  <div class="topcenter"><strong>CONTROL DECK</strong> // FIELD INTERFACE <span class="accent">V1.4.5.3 APP ICONS + INPUT FIX + ARGOS + WERKZEUGE + 24 VISUALIZERS + WORLD ATLAS</span><br>KNOWLEDGE · REPAIR · RECOVERY · REBUILD</div>
+  <div class="topright"><button class="tophelp" id="helpbtn" title="Bedienung anzeigen">? HILFE</button><button class="tophelp exit-btn" id="exitArk" type="button" title="ARK beenden und Stream Deck freigeben">⏻ BEENDEN</button><span class="chip"><span class="dot"></span>OFFLINE</span><span class="chip warning">UI-ENTWURF</span><span class="clock" id="clock">--:--</span></div>
+ </header>
+ <aside class="sidebar" aria-label="ARK-Bereiche">
+  <div class="eyebrow">DATENTRÄGER / MODUL</div>
+  <button class="sidebtn selected" data-module="home"><span class="sideicon">⌂</span><span class="sidetxt"><strong>Startseite</strong><small>ARK CONTROL</small></span></button>
+  <button class="sidebtn" data-module="origin"><span class="sideicon">00</span><span class="sidetxt"><strong>ARK 0</strong><small>INSTALLATIONEN</small></span></button>
+  <button class="sidebtn" data-module="foundation"><span class="sideicon">01</span><span class="sidetxt"><strong>ARK-01</strong><small>RAZIEL · FOUNDATION</small></span></button>
+  <button class="sidebtn" data-module="knowledge"><span class="sideicon">02</span><span class="sidetxt"><strong>ARK-02</strong><small>URIEL · KNOWLEDGE & MAPS</small></span></button>
+  <button class="sidebtn" data-module="culture"><span class="sideicon">03</span><span class="sidetxt"><strong>ARK-03</strong><small>GABRIEL · MEDIA & GAMES</small></span></button>
+  <button class="sidebtn" data-module="systems"><span class="sideicon">04</span><span class="sidetxt"><strong>ARK-04</strong><small>MICHAEL · SYSTEMS & AI</small></span></button>
+  <button class="sidebtn" data-module="mobile"><span class="sideicon">05</span><span class="sidetxt"><strong>ARK-05</strong><small>NOAH · MOBILE KIT</small></span></button>
+  <button class="sidebtn" data-module="bible"><span class="sideicon">✚</span><span class="sidetxt"><strong>Bibel</strong><small>OFFLINE-ARCHIV</small></span></button>
+  <button class="sidebtn" data-module="settings"><span class="sideicon" aria-hidden="true">⚙</span><span class="sidetxt"><strong>Einstellungen</strong><small>OPTIONEN</small></span></button>
+  <div class="sidebottom"><div class="sidehint"><span>// READ ONLY DESIGN</span><br>Keine Laufwerksscans.<br>Keine Datenverknüpfung.<br>Nur Downloads benötigen Internet.</div></div>
+ </aside>
+ <main class="main"><div hidden><span id="lastaction"></span><span id="inputmode"></span><span id="sdconn"></span><span id="hwMode"></span></div>
+  <div class="path" id="path">ARK:/CONSOLE/START</div>
+  <div class="mainheading"><div><h1 id="pagetitle">Die mobile Wissenszentrale.</h1><p id="pagesub">Vier Bibliothekslaufwerke, Werkzeuge und lokale KI – alles offline.</p></div></div>
+  <div class="sec-head"><h3 class="overview-label">MODULE // VERZEICHNIS <span id="modcount" aria-live="polite"></span></h3><div class="searchrow"><input id="search" type="search" placeholder="Module suchen ..." aria-label="Module suchen"><button class="cleanbtn" id="clearSearch" title="Suche zurücksetzen">×</button><button class="voicebtn" type="button" id="wikiSearchButton" title="Wikipedia durchsuchen">⌕ SUCHEN</button><button class="voicebtn" id="keyboardToggle" type="button" title="Schreibmodus auf dem Stream Deck umschalten">⌨ TEXT</button><button class="voicebtn" id="voicebtn" type="button" aria-label="Sprechtaste gedrückt halten" title="Drücken und sprechen (alternativ F8)">◉ PTT</button><button class="module-back" type="button" id="moduleBack">← ZURÜCK ZUR ÜBERSICHT</button></div></div>
+  <div class="t9-status" id="t9Status" role="status" aria-live="polite" hidden>TEXTMODUS // 2–9: Buchstaben mehrfach drücken · LEER: Leerzeichen · DEL: löschen · SUCHE: übernehmen · ENDE: Navigation</div><div class="voice-indicator" id="voiceIndicator" aria-live="polite">ARK VOICE // Spracherkennung wird geprüft · Taste gedrückt halten</div><div class="modulegrid" id="modulegrid" aria-label="Module"></div>
+  <section class="ark-quick-topics" id="arkQuickTopics" aria-label="Schlagwörter zum geöffneten Modul" hidden>
+   <div class="ark-topic-rows" id="arkTopicRows"></div>
+  </section>
+  <section class="ark-local-results" id="arkLocalResults" aria-label="Lokale ARK-Treffer" hidden>
+   <div class="ark-results-head"><strong>LOKAL IN ARK</strong><span id="arkLocalCount"></span><span class="ark-wiki-hint">WIKIPEDIA-ERGEBNISSE ↓</span></div>
+   <div class="ark-results-items" id="arkLocalItems"></div>
+  </section>
+  <section class="ark-app-launcher" id="arkAppLauncher" aria-label="ARK-Apps" hidden tabindex="0">
+   <div class="ark-app-launcher-head"><strong id="arkAppHeading">APPS // ÖFFNEN</strong><small>APP ANTIPPEN ODER MIT OK ÖFFNEN</small></div>
+   <div class="ark-icon-grid" id="arkAppGrid"></div>
+  </section>
+  <section id="originPanel" hidden aria-label="ARK-0 Installation und Komponenten">
+<div id="installDashboard"><h2>ARK-0 // INSTALLATIONEN & RESSOURCEN</h2><p>Automatische Pruefung bei jedem Start. Externe Daten werden nicht verschoben. Grosser Downloads nur nach Zustimmung.</p><div class="ark-install-toolbar"><strong id="installSummary">Pruefe Komponenten ...</strong><button type="button" id="installRefresh">ERNEUT PRUEFEN</button></div><div class="ark-install-scroll"><table class="ark-install-table"><thead><tr><th>NAME</th><th>ABHAENGIGKEIT</th><th>ORDNER / DATEI</th><th>STATUS</th><th>ONLINE / AKTION</th></tr></thead><tbody id="installRows"><tr><td colspan="5">Pruefung wird geladen ...</td></tr></tbody></table></div><p id="installMessage" role="status">Lokale Dateien werden nur gelesen. Ordnerbindungen erfolgen ausschliesslich nach Auswahl.</p></div><div id="legacyOriginArea" hidden>
+<section id="originSimplePanel" aria-label="ARK Origin einfache Versionsauswahl">
+  <h2>ARK-00 // ORIGIN</h2>
+  <div class="origin-current"><span>AKTUELL LAUFENDE VERSION</span><strong id="originSimpleCurrent">Wird erkannt ...</strong><div id="originSimpleRunning" role="status">Prüfe laufende ARK-Version ...</div>
+    <div id="originSimpleFallback" role="status">Rückfallprüfung wird geladen ...</div><details><summary>Diagnose (Expertenmodus)</summary><button id="originFrontendTest" type="button">Frontend-Fehlererfassung testen</button><p>Kontrollierter Test; ARK bleibt geöffnet.</p></details></div>
+  <label for="originSimpleVersions">Verfügbare ARK-Versionen</label>
+  <select id="originSimpleVersions" aria-label="ARK-Version wählen" disabled><option>Suche Versionen ...</option></select>
+  <button id="originSimpleStart" type="button" disabled>VERSION WECHSELN</button>
+  <output id="originSimpleMessage" role="status">Lade Origin-Versionen ...</output>
+</section>
+
+<details id="originAdvanced"><summary>ERWEITERTE WERKZEUGE</summary>
+
+   <h2>ARK-00 // ORIGIN V0.1</h2>
+   <p>Archivscanner: ZIP-Integrität, SHA-256, Dateivergleich. Liest bestehende ARK-Versionen nur auf ausdrücklichen Klick. Die ZIP-Dateien werden nicht verändert oder gelöscht.</p>
+   <button id="originStart" type="button">ARCHIVE SCANNEN</button><button id="originCancel" type="button" disabled>SCAN ABBRECHEN</button>
+   <output id="originState" role="status">Noch nicht geprüft.</output><div id="originDetails"></div><div id="originItems"></div>
+<section id="originPatchPanel" aria-label="ARK Origin Patchgenerator">
+      <h3>PATCHGENERATOR V0.2.3 / LAB</h3>
+      <p>Wählt zwei ARK-Archive und erzeugt einen verifizierbaren Patch. Alle Original-ZIPs bleiben unverändert. Keine Produktionsinstallation.</p>
+      <label>Basisversion <select id="originPatchBase"></select></label>
+      <label>Zielversion <select id="originPatchTarget"></select></label>
+      <button id="originPatchCreate" type="button">PATCH ERZEUGEN</button>
+      <label>Vorhandener Patch <select id="originPatchFile"></select></label>
+      <button id="originPatchRestore" type="button">ZIP REKONSTRUIEREN</button>
+      <button id="originPatchCancel" type="button" disabled>ABBRECHEN</button>
+      <output id="originPatchStatus" role="status">Noch nicht gestartet.</output>
+      <pre id="originPatchResult" aria-label="Patch-Prüfbericht"></pre>
+      <p>Python 3 muss lokal installiert sein. Ergebnisse liegen in Origin\Patches, Origin\Builds und Origin\Reports.</p>
+    <section id="originSwitchPanel" aria-label="Origin LAB Version Switcher">
+<h3>VERSION-SWITCHER V0.3 / LAB</h3>
+<p>Rekonstruierte ZIPs getrennt im LAB bereitstellen. Keine automatischen Produktionsupdates und kein Start durch die Browseroberflaeche.</p>
+<label for="originSwitchSource">ZIP fuer LAB-Kopie</label><select id="originSwitchSource"></select>
+<button id="originSwitchDeploy" type="button">INS LAB BEREITSTELLEN</button>
+<label for="originSwitchVersion">Vorhandene LAB-Kopie</label><select id="originSwitchVersion"></select>
+<button id="originSwitchSelect" type="button">LAB-VERSION AUSWAEHLEN</button>
+<button id="originSwitchReload" type="button">LISTE AKTUALISIEREN</button>
+<output id="originSwitchStatus" role="status">Bereit.</output>
+<pre id="originSwitchResult" aria-label="Versions-Protokoll"></pre>
+<p>Nur startfaehige ARK-Versionen koennen aktiviert werden. Danach bei geschlossenem ARK ueber START_SELECTED_LAB.ps1 starten.</p>
+</section>
+<section id="originSafePanel" aria-label="Origin SafeSwitch V0.4">
+<h3>SAFE SWITCH V0.4 / LAB</h3>
+<p>Unabhaengiger Rueckfall-Starter bleibt erhalten. Diese Ansicht ist auf Status und SHA-256-Pruefung begrenzt; kein Start oder Versionswechsel bei laufendem ARK.</p>
+<button id="originSafeReload" type="button">SAFE SWITCH STATUS LADEN</button>
+<button id="originSafeVerify" type="button">AKTIVE VERSION VOLLSTAENDIG PRUEFEN</button>
+<h4>Status / Rueckfallversion</h4><pre id="originSafeStatus" role="status">Wird geladen ...</pre>
+<h4>Registrierte LAB-Versionen</h4><pre id="originSafeVersions">Wird geladen ...</pre>
+<output id="originSafeResult" role="status"></output>
+<p>Zum sicheren Starten oder Wechseln ARK schliessen und den separaten Origin_SafeSwitch_V033 verwenden.</p>
+</section>
+</section>
+   <p>Berichte erscheinen in Media\ARKVersionen\Origin\Manifests, Reports und Logs. Große Archivbestände können längere Laufzeiten und HDD-Last verursachen.</p>
+  
+</details>
+</div>
+</section>
+  <section class="settings-panel" id="settingsPanel" hidden aria-label="ARK Optionen">
+   <div class="settings-head"><h2>⚙ EINSTELLUNGEN</h2><p>Lokale Geräte und Bedienung</p></div>
+   <div class="settings-card"><h3><span aria-hidden="true">◉</span> ARK VOICE · MIKROFONQUELLE</h3>
+    <label for="micSelect">Aufnahmegerät</label>
+    <div class="settings-controls"><select id="micSelect" aria-label="Mikrofonquelle"><option value="-1">Windows-Standardmikrofon</option></select><button type="button" class="cleanbtn" id="micRefresh">↻ AKTUALISIEREN</button></div>
+    <div class="settings-controls"><button type="button" class="cleanbtn" id="micIdentify">◎ MIKROFON IDENTIFIZIEREN</button><button class="cleanbtn" type="button" id="micSave">AUSWAHL SPEICHERN</button></div>
+    <p class="settings-note" id="micIdentifyStatus" role="status" aria-live="polite">Identifizierung: Zuerst kurz still sein, anschließend deutlich sprechen. Keine automatische Speicherung.</p>
+    <div id="micIdentifyResults" class="mic-identify-results" hidden></div>
+    <div class="settings-controls"><span id="micMessage" role="status" aria-live="polite">Verfügbare Mikrofone werden geladen ...</span></div>
+    <p class="settings-note">Die Auswahl wird auf diesem Gerät gespeichert und für die nächste Whisper-Aufnahme verwendet. Das Windows-Fallback nutzt weiterhin das Windows-Standardmikrofon.</p>
+   </div>
+  </section>
+  <section class="ark-media-panel" id="mediaPanel" hidden aria-label="ARK Media – vorhandene Ordner und Dateien">
+   <div class="ark-media-toolbar"><span id="mediaStatus">ARK Media wird geprüft ...</span><button type="button" class="cleanbtn" id="mediaHome">MEDIA</button><button type="button" class="cleanbtn" id="mediaUp">ÜBERGEORDNET</button></div>
+   <div class="ark-media-setup" id="mediaSetup" hidden><label for="mediaRoot">Media-Ordner (schreibgeschützter Zugriff)</label><div class="wiki-settings-row"><input id="mediaRoot" type="text" spellcheck="false" placeholder="I:\Media"><button type="button" id="mediaSetRoot" class="cleanbtn">ORDNER VERBINDEN</button></div></div>
+
+   <details class="ark-downloader" id="arkDownloader">
+    <summary>↓ MEDIA DOWNLOADER // VIDEO + MP3 · SOCIAL MEDIA</summary>
+    <div class="ark-download-body">
+     <div class="ark-download-url"><label for="dlUrl">Öffentliche Video-/Medien-URL</label><input type="url" id="dlUrl" placeholder="https://www.youtube.com/watch?v=..." spellcheck="false" autocomplete="off" inputmode="url"></div>
+     <div class="ark-download-playlist"><label><input type="checkbox" id="dlPlaylist"> Gesamte Playlist herunterladen</label><span id="dlPlaylistInfo">Ohne Häkchen wird nur ein einzelnes Video geladen. Playlist-Downloads können viel Speicherplatz benötigen.</span></div>
+     <div class="ark-download-opts"><label><input type="checkbox" id="dlVideo" checked> Video mit Ton (MP4 bevorzugt)</label><label><input type="checkbox" id="dlMP3"> MP3 (nur Ton)</label></div>
+     <div class="ark-download-folder" id="dlVideoRow"><label for="dlVideoDir">Speicherort Video</label><div><input type="text" id="dlVideoDir" spellcheck="false" placeholder="I:\Media\Videos"><button type="button" id="dlBrowseVideo">ORDNER WÄHLEN</button></div></div>
+     <div class="ark-download-folder" id="dlMP3Row" hidden><label for="dlMP3Dir">Speicherort MP3</label><div><input type="text" id="dlMP3Dir" spellcheck="false" placeholder="I:\Media\MP3"><button type="button" id="dlBrowseMP3">ORDNER WÄHLEN</button></div></div>
+     <div class="ark-download-buttons"><button type="button" id="dlStart">↓ HERUNTERLADEN</button><button type="button" id="dlCancel" disabled>ABBRECHEN</button><button type="button" id="dlInstall">WERKZEUGE EINRICHTEN</button><span id="dlToolState" class="ark-download-note">Prüfe yt-dlp und FFmpeg ...</span></div>
+     <div class="ark-download-progress"><div id="dlProgressBar"></div></div><div id="dlMessage" role="status" aria-live="polite">Bereit.</div><div id="dlLog" aria-label="Downloadprotokoll" hidden></div>
+     <div class="ark-download-note">YouTube · TikTok · Instagram · X · Facebook · Reddit · Vimeo · weitere yt-dlp-Quellen. Manche Medien benötigen Anmeldung oder sind nicht zugänglich. Nur Inhalte herunterladen, für die eine Berechtigung besteht. Für den Download wird Internet benötigt; ARK selbst bleibt lokal.</div>
+    </div>
+   </details>
+
+   <section class="ark-music" id="arkMusic" aria-label="ARK Offline-Musikplayer">
+    <div class="ark-music-head"><strong>ARK-03 // MUSIKPLAYER</strong><span id="musicCount">Lokale Bibliothek wird geladen ...</span><button type="button" id="musicReload" title="Bibliothek erneut einlesen">AKTUALISIEREN</button></div>
+    <div class="ark-music-grid">
+     <div class="ark-music-stage">
+      <iframe id="musicVisualizer" class="ark-visualizer-frame" src="/visualizer/index.html?ark=1" title="ARK Visualizer Studio v1.4 – 24 Effekte" allowfullscreen></iframe>
+      <div class="ark-music-meta-row">
+       <div class="ark-music-track"><strong id="musicTitle">Noch kein Titel gewählt</strong><small id="musicFolder">I:\Media\MP3</small></div>
+       <button type="button" id="musicAudioMode" class="ark-music-audio-source" title="David-Audioquelle wechseln: Seraph, Mikrofon, Mix" aria-label="David-Audioquelle: Seraph" aria-pressed="false">◉ SERAPH</button>
+      </div>
+      <audio id="musicAudio" controls preload="metadata"></audio>
+      <div class="ark-music-transport">
+       <button type="button" id="musicPrev" title="Voriger Titel">◀◀</button>
+       <button type="button" id="musicNext" title="Nächster Titel">▶▶</button>
+       <button type="button" id="musicShuffle" aria-pressed="false" title="Zufallswiedergabe">ZUFALL: AUS</button>
+       <button type="button" id="musicRepeat" title="Wiederholung">WIEDERHOLEN: AUS</button>
+       <select id="musicView" aria-label="Visualizer wählen"><option value="waveform">Waveform</option></select>
+       <button type="button" id="musicOptions" title="Effekt-Einstellungen">EINSTELLUNGEN</button>
+       <button type="button" id="musicFullscreen" title="Visualizer im Vollbild">VOLLBILD</button>
+      </div>
+      <div class="ark-music-message" id="musicState" role="status" aria-live="polite">Titel aus der Bibliothek auswählen.</div>
+     </div>
+     <div class="ark-music-library">
+      <label for="musicFilter">TITEL / ORDNER SUCHEN</label><input id="musicFilter" type="search" autocomplete="off" placeholder="Dateiname filtern ...">
+      <div id="musicList" class="ark-music-list" aria-label="Musiktitel"></div>
+     </div>
+    </div>
+   </section>
+   <div id="mediaSections" class="ark-media-sections"></div>
+   <div class="ark-media-path" id="mediaPath">/Media</div>
+   <div id="mediaList" class="ark-media-list" aria-label="Media-Dateien"></div>
+   <div id="mediaPreview" class="ark-media-preview" hidden>
+    <div class="ark-media-preview-bar"><strong id="mediaFilename"></strong>
+      <button type="button" class="cleanbtn" id="mediaReaderFullscreen" hidden>⛶ VOLLBILD LESEN</button>
+      <button type="button" class="cleanbtn" id="mediaPreviewClose">ZURÜCK ZU DATEIEN</button>
+      <a id="mediaDownload" download href="#">ORIGINAL ÖFFNEN / SPEICHERN</a>
+    </div>
+    <div id="mediaReaderControls" class="ark-book-controls" hidden>
+      <button id="mediaBookPrev" type="button" title="Vorheriges Kapitel">◀ KAPITEL</button>
+      <label for="mediaBookChapter" class="ark-book-chapter-label">KAPITEL</label><select id="mediaBookChapter" aria-label="Buchkapitel auswählen"></select>
+      <button id="mediaBookNext" type="button" title="Nächstes Kapitel">KAPITEL ▶</button>
+      <button id="mediaBookLess" type="button" title="Schrift verkleinern">A−</button><button id="mediaBookMore" type="button" title="Schrift vergrößern">A+</button>
+      <span id="mediaBookStatus" role="status"></span>
+    </div>
+    <div id="mediaContent"></div>
+   </div>
+  </section>
+  <section class="ark-apps-panel" id="appsPanel" hidden aria-label="ARK-04 installierte Programme">
+   <div class="ark-apps-heading" hidden>ARK-04 // WINDOWS-WERKZEUGE</div>
+   <p class="ark-apps-note" hidden>Freigegebene Programme aus I:\Media\Programme. Einmal starten, anschließend erneut auswählen, um das Fenster zu aktivieren. Keine Installation oder Dateiveränderung.</p>
+   <div class="ark-apps-list" id="appsList"></div>
+   <p class="ark-apps-state" id="appsState" role="status" aria-live="polite"></p>
+   <section class="ark-util-card ark-util-wide" id="retroarchGuide" hidden aria-label="RetroArch Bedienungsanleitung">
+    <h3>RETROARCH · EINRICHTUNG UND BEDIENUNG</h3>
+    <ol class="ark-retroarch-steps">
+     <li><strong>Cores laden:</strong> RetroArch öffnen → Hauptmenü → Online-Aktualisierung → Core-Downloader → je System den passenden Core herunterladen (einmalig Internet nötig).</li>
+     <li><strong>ROM-Verzeichnis einstellen:</strong> Einstellungen → Verzeichnisse → Startverzeichnis auf die ROM-Sammlung zeigen (z. B. I:\Media\Spiele\Batocera_Backup\roms).</li>
+     <li><strong>Verzeichnis scannen:</strong> Hauptmenü → Importieren → Verzeichnis scannen → den ROM-Ordner wählen → RetroArch erkennt Systeme und Cores automatisch.</li>
+     <li><strong>Spielen:</strong> Nach dem Scan erscheinen alle erkannten Spiele direkt im RetroArch-Hauptmenü als Liste ("Verlauf" bzw. eigene Sammlung) – einfach anklicken und starten.</li>
+    </ol>
+    <small>Für manche Systeme (z. B. PSX, PS2) wird zusätzlich eine BIOS-Datei im System-Verzeichnis benötigt (Einstellungen → Verzeichnisse → System/BIOS). RetroArch verwaltet ROMs, Cores und Speicherstände komplett selbst; ARK startet das Programm nur.</small>
+   </section>
+   <div class="ark-util-head" hidden>ARK-04 // INTERNE OFFLINE-WERKZEUGE</div>
+   <div class="ark-tool-current" id="arkToolCurrent" hidden></div>
+   <div class="ark-util-grid">
+    <section class="ark-util-card ark-util-wide" id="arkArgosPanel" aria-label="Argos Offline Textübersetzer">
+     <h3>ARGOS TRANSLATE · OFFLINE TEXTÜBERSETZER</h3>
+     <div class="ark-util-actions"><span id="argosEngineStatus" role="status">Argos-Engine wird geprüft …</span><button type="button" id="argosReload">STATUS AKTUALISIEREN</button><button type="button" id="argosSetup">ENGINE EINMALIG EINRICHTEN</button></div>
+     <div class="ark-argos-pair"><label>QUELLSPRACHE<select id="argosFrom"><option value="de">Deutsch</option><option value="en">Englisch</option></select></label><button type="button" id="argosSwap" aria-label="Sprachen tauschen">⇄</button><label>ZIELSPRACHE<select id="argosTo"><option value="en">Englisch</option><option value="de">Deutsch</option></select></label></div>
+     <div class="ark-argos-columns"><label>ORIGINALTEXT<textarea id="argosInput" spellcheck="true" rows="6" maxlength="8000" placeholder="Text zum Übersetzen …"></textarea></label><label>ÜBERSETZUNG<textarea id="argosOutput" rows="6" readonly placeholder="Lokale Übersetzung erscheint hier"></textarea></label></div>
+     <div class="ark-util-actions"><button type="button" id="argosTranslate">ÜBERSETZEN</button><button type="button" id="argosCopy">ERGEBNIS KOPIEREN</button><button type="button" id="argosClear">LEEREN</button></div>
+     <div class="ark-argos-models"><strong>SPRACHMODELLE</strong><span id="argosPairs">Noch keine Modelle erkannt.</span><div class="ark-util-actions"><button type="button" id="argosInstallDeEn">DE → EN LADEN</button><button type="button" id="argosInstallEnDe">EN → DE LADEN</button></div><div class="ark-util-actions"><label>Lokale .argosmodel-Datei (bestehender Pfad)<input id="argosModelPath" spellcheck="false" placeholder="I:\Modelle\translate-de_en.argosmodel"></label><button type="button" id="argosInstallFile">DATEI INSTALLIEREN</button></div></div>
+     <output id="argosMessage" role="status" aria-live="polite">Einmalige Einrichtung benötigt Internet; danach keine Online-Abfragen. Spracheingabe folgt später.</output>
+     <small>Übersetzungen laufen lokal in der ARK-eigenen Argos-Laufzeit; keine Texte werden an einen Onlinedienst gesendet. Sprachmodelle werden nur auf ausdrücklichen Klick geladen. Die Installation kann mehrere hundert MB benötigen.</small>
+    </section>
+    <section class="ark-util-card" aria-label="Wissenschaftlicher Taschenrechner"><h3>WISSENSCHAFTLICHER RECHNER</h3><input id="utCalcExpr" spellcheck="false" placeholder="z. B. sin(30) + sqrt(16)" value="sin(30) + sqrt(16)"><div class="ark-util-actions"><select id="utAngle"><option value="deg">Grad (°)</option><option value="rad">Bogenmaß</option></select><button type="button" id="utCalcRun">BERECHNEN</button></div><output id="utCalcOut" role="status">—</output><small>+, −, ×, ÷, ^, %, sin, cos, tan, sqrt, log, ln, abs, exp, π und e</small></section>
+    <section class="ark-util-card" aria-label="Countdown und Stoppuhr"><h3>TIMER & STOPPUHR</h3><div class="ark-util-time-fields"><label>Std.<input id="utHours" type="number" min="0" max="99" value="0"></label><label>Min.<input id="utMinutes" type="number" min="0" max="59" value="5"></label><label>Sek.<input id="utSeconds" type="number" min="0" max="59" value="0"></label></div><div id="utTimerDisplay" class="ark-util-timer" aria-live="off">00:05:00</div><div class="ark-util-actions"><button id="utTimerStart" type="button">START</button><button id="utTimerPause" type="button">PAUSE</button><button id="utTimerReset" type="button">RESET</button></div><div class="ark-util-actions"><button id="utStopwatchStart" type="button">STOPPUHR START</button><button id="utStopwatchReset" type="button">NULLEN</button><span id="utStopwatchDisplay">00:00.0</span></div><small>Timer läuft, solange das ARK-Fenster geöffnet bleibt.</small></section>
+    <section class="ark-util-card" aria-label="Kennwortgenerator"><h3>PASSWORT-GENERATOR</h3><div class="ark-util-actions"><label>Länge <input id="utPasswordLen" type="number" min="12" max="80" value="24"></label><button id="utPasswordNew" type="button">ERZEUGEN</button></div><input id="utPasswordOut" readonly placeholder="Lokal und kryptografisch zufällig"><button id="utPasswordCopy" type="button">KOPIEREN</button><small>Keine Speicherung, kein Netzwerk. Sichere Zufallszahlen des Browsers.</small></section>
+    <section class="ark-util-card" aria-label="Dateiprüfsumme"><h3>DATEIPRÜFSUMME · SHA-256</h3><input id="utHashFile" type="file"><div class="ark-util-actions"><button id="utHashRun" type="button">PRÜFSUMME BERECHNEN</button></div><output id="utHashResult" class="ark-util-hash">Noch keine Datei ausgewählt</output><small>Lokale Prüfsumme im Browser (bis 128 MiB pro Datei). Ideal für Datei-Abgleiche.</small></section>
+    <section class="ark-util-card ark-util-wide" id="ollamaPanel" aria-label="Ollama lokale KI">
+     <h3>OLLAMA · LOKALE KI</h3>
+     <div class="ark-util-actions"><span id="ollamaStatusLine" role="status">Ollama wird geprüft …</span><button type="button" id="ollamaReload">PRÜFEN</button><button type="button" id="ollamaDelete">LÖSCHEN</button></div>
+     <label>MODELL<select id="ollamaModelSelect"><option value="">Noch keine Modelle erkannt</option></select></label>
+     <div class="ark-util-actions"><label style="flex:1">Eigenes Modell laden, z. B. qwen2.5:14b<input id="ollamaPullName" spellcheck="false" placeholder="qwen2.5:14b"></label><button type="button" id="ollamaPullBtn">LADEN</button></div>
+     <output id="ollamaPullState" role="status"></output>
+     <div id="ollamaChatLog" class="ark-ollama-chat" aria-live="polite"></div>
+     <div class="ark-util-actions"><input id="ollamaChatInput" spellcheck="false" placeholder="Nachricht an das lokale Modell …" style="flex:1"><button type="button" id="ollamaChatSend">SENDEN</button><button type="button" id="ollamaChatClear">VERLAUF LEEREN</button></div>
+     <small>Lokale Ollama-Instanz unter http://localhost:11434 – keine Daten verlassen diesen Rechner. ARK startet den Ollama-Server bei Bedarf automatisch.</small>
+    </section>
+
+   </div>
+
+  </section>
+  <section class="wiki-panel bible-panel" id="biblePanel" hidden aria-label="Bibel-Dateien">
+   <div class="wiki-header"><div><b>ARK // BIBEL · LOKALE DATEIEN</b><p id="bibleStatus">Bibel-Ordner wird geprüft ...</p></div><div class="wiki-header-actions"><button id="bibleChange" class="cleanbtn">⚙ ORDNER</button><button id="bibleClose" class="cleanbtn">✕ SCHLIESSEN</button></div></div>
+   <div class="wiki-settings" id="bibleSettings" hidden><label for="bibleRoot">Bibel-Ordner (wird ausschließlich gelesen):</label><div class="wiki-settings-row"><input id="bibleRoot" type="text" spellcheck="false" placeholder="I:\ARK\Bibel"><button id="bibleSave" class="cleanbtn">ORDNER ÜBERNEHMEN</button></div><small>Standard: Ordner „Bibel“ neben ARK_Controller_Windows_x64.exe. Keine Dateien verschieben oder umbenennen.</small></div>
+   <div class="ark-bible-reader" id="arkBibleReader" aria-label="Lutherbibel 1912 Lesemodus">
+    <div class="ark-bible-top"><span class="ark-bible-kicker">LUTHERBIBEL 1912 · OFFLINE-LESEMODUS</span><span id="bibleChapterLabel">Originaltexte, unverändert</span></div>
+    <div class="ark-bible-nav"><label>BUCH<select id="bibleBookSelect" aria-label="Bibelbuch auswählen"></select></label><label>KAPITEL<select id="bibleChapterSelect" aria-label="Kapitel auswählen"></select></label><button id="biblePrevChapter" type="button" title="Vorheriges Kapitel">‹</button><button id="bibleNextChapter" type="button" title="Nächstes Kapitel">›</button><button type="button" id="bibleFontDown" aria-label="Schrift verkleinern">A−</button><button type="button" id="bibleFontUp" aria-label="Schrift vergrößern">A+</button></div>
+    <div class="ark-bible-stage"><iframe id="bibleReaderFrame" title="Bibelkapitel im Lesemodus" sandbox="" referrerpolicy="no-referrer"></iframe></div>
+   </div>
+   <details class="ark-bible-files" id="bibleFiles"><summary>DATEIARCHIV / ORIGINALDATEIEN</summary>
+   <div class="wiki-controls"><button id="bibleHome" class="cleanbtn">⌂ BIBEL START</button><button id="bibleUp" class="cleanbtn">↑ ÜBERGEORDNET</button><input type="search" id="bibleFilter" aria-label="Bibel-Dateien filtern" placeholder="Dateiname filtern ..."><span id="bibleBreadcrumb" class="bible-path">/Bibel</span></div>
+   <div id="bibleList" class="bible-list" aria-label="Bibel-Ordnerinhalt"></div>
+   </details>
+   <div id="biblePreview" class="bible-preview" hidden><div class="bible-previewbar"><strong id="bibleFilename"></strong><a id="bibleDownload" href="#" download>DATEI ÖFFNEN / SPEICHERN</a><button id="biblePreviewClose" class="cleanbtn">✕ VORSCHAU</button></div><div id="bibleContent"></div></div>
+  </section>
+  <section class="topics-panel" id="topicsPanel" hidden aria-label="Themen und Stichworte">
+   <div class="topics-title" id="topicsTitle">THEMEN // WIKIPEDIA</div>
+   <p class="topics-description">Ein Stichwort auswählen, um die lokale Wikipedia zu durchsuchen. Weitere Fachquellen folgen später.</p>
+   <div class="topics-grid" id="topicsGrid"></div>
+  </section>
+  <section class="nrw3d-panel" id="atlasPanel" hidden aria-label="ARK World Atlas"><div class="nrw3d-toolbar"><span>ARK-02 // WORLD ATLAS · NATURAL EARTH · OFFLINE</span><button class="cleanbtn" id="atlasClose">‹ ZURÜCK ZUR ÜBERSICHT</button></div><iframe id="atlasFrame" title="ARK World Atlas" loading="lazy" src="/atlas/index.html"></iframe></section>
+  <section class="nrw3d-panel" id="nrw3dPanel" hidden aria-label="ARK NRW 3D"><div class="nrw3d-toolbar"><span>ARK-02 // NRW 3D · LOKALE DATEN</span><button class="cleanbtn" id="nrw3dClose">‹ ZURÜCK ZUR ÜBERSICHT</button></div><iframe id="nrw3dFrame" title="ARK NRW 3D" loading="lazy" src="/nrw3d/index.html"></iframe></section>
+  <section class="wiki-panel" id="wikiPanel" hidden aria-label="Offline Wikipedia">
+   <div class="wiki-header"><div><b>ARK-02 // OFFLINE WIKIPEDIA</b><p id="wikiStatus">Kiwix wird geprüft ...</p></div><div class="wiki-header-actions"><button id="wikiChange" class="cleanbtn" title="ZIM-Pfad ändern">⚙ QUELLE</button> <button id="wikiClose" class="cleanbtn" title="Wikipedia schließen">✕ SCHLIESSEN</button></div></div>
+   <div class="wiki-settings" id="wikiSettings"><label for="zimPath">ZIM-Datei auf ARK 0 (unverändert, nur lesen):</label><div class="wiki-settings-row"><input id="zimPath" type="text" spellcheck="false" placeholder="z.B. K:\wikipedia_de_all_maxi_2026-10.zim"><button id="wikiSave" class="cleanbtn">ZIM VERBINDEN</button></div><small>Windows-Explorer: Datei mit Shift + Rechtsklick → „Als Pfad kopieren“. Kein Verschieben oder Kopieren nötig.</small></div>
+   <div class="wiki-controls"><button id="wikiHome" class="cleanbtn">⌂ WIKI START</button><button id="wikiBack" class="cleanbtn">‹ ZURÜCK</button><button id="wikiForward" class="cleanbtn">VOR ›</button><button id="wikiFocus" class="cleanbtn">↗ ARTIKEL BEDIENEN</button><button id="nrw3dOpen" class="cleanbtn">◭ NRW 3D</button><button id="atlasOpen" class="cleanbtn">◎ WORLD ATLAS</button><span class="ark-wiki-link-status" id="wikiLinkStatus" role="status" aria-live="polite" hidden></span></div>
+   <iframe title="Wikipedia offline über lokalen Kiwix-Server" id="wikiFrame" loading="lazy" referrerpolicy="no-referrer"></iframe>
+  </section>
+  <!-- ARK_RAZIEL_V01_START -->
+<section id="razielPanel" hidden style="border:1px solid #286a60;border-radius:12px;padding:18px;margin:18px 0;background:#081a1c;color:#d7f0e8">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+    <div><h2 style="margin:0;color:#90ead1">ARK-01 // RAZIEL</h2><p style="margin:6px 0;color:#a5c7bf">Hardware, Laufwerke und ARK-Fundorte · schreibgeschützte Vorschau</p></div>
+    <button type="button" class="cleanbtn" id="razielScan">DATENTRÄGER NEU SCANNEN</button>
+  </div>
+  <p id="razielStatus" role="status">Noch kein Scan ausgeführt.</p>
+  <div id="razielDetails" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px"></div>
+  <p style="font-size:12px;color:#92ada8">Raziel V0.3.2: Es werden nur Laufwerkswurzeln und bekannte ARK-Ordner geprüft. Fund bedeutet nicht, dass der Datenbestand funktionsfähig oder vollständig ist. Keine Konfigurationsänderungen.</p>
+</section>
+<!-- ARK_RAZIEL_V01_END -->
+
+  <p class="module-placeholder" id="modulePlaceholder" hidden>Dieses Modul ist für ARK vorgesehen. Inhalte werden später eingebunden.</p>
+  <div class="navhint">PFEILTASTEN / STREAM DECK: BEWEGEN <span>·</span> ENTER / OK: ÖFFNEN <span>·</span> BACKSPACE: ZURÜCK <span>·</span> SHIFT + BACKSPACE: VOR <span>·</span> F8 / PTT: SPRACHE <span>·</span> BILD↑/↓: WIKI-LINKS · TEXT: STREAM-DECK-TASTATUR</div>
+  </main>
+ <div class="ark-float-window" id="arkZipFloat" hidden role="dialog" aria-label="ZIP-Manager">
+  <div class="ark-float-titlebar" id="arkZipFloatHandle"><span>ARK-04 / ZIP-MANAGER</span><button type="button" class="ark-float-close" id="arkZipFloatClose" aria-label="Schließen">×</button></div>
+  <div class="ark-float-body">
+   <section class="ark-util-card ark-util-wide" aria-label="ZIP Archive erstellen und entpacken"><h3>ZIP-ARCHIV · PACKEN / ENTPACKEN</h3><label>Quelldatei / Quellordner oder ZIP-Datei<input id="utZipSource" spellcheck="false" placeholder="I:\Media\Bücher"></label><label>Ziel: neue ZIP-Datei oder vorhandener leerer Zielordner<input id="utZipTarget" spellcheck="false" placeholder="I:\Media\Sicherung.zip"></label><div class="ark-util-actions"><button id="utZipCreate" type="button">ZIP ERSTELLEN</button><button id="utZipExtract" type="button">ZIP ENTPACKEN</button></div><output id="utZipState" role="status">Nur mit ausdrücklichem Klick; vorhandene Dateien werden nicht überschrieben.</output><small>Nur ZIP; keine RAR-/7z-Unterstützung in dieser Version. Für Entpacken muss der Zielordner vorhanden und leer sein. Quelldateien werden nicht verändert.</small></section>
+  </div>
+ </div>
+ <aside class="right">
+  <div class="rhead">// AKTIVES MODUL</div>
+  <div class="rightpanel"><span class="tag" id="detailcat">00 // COMMAND</span><h3 id="detailtitle">ARK Control Deck</h3><p id="detailbody">Wähle ein Modul per Berührung, Maus oder über die Navigationstasten des Stream Decks.</p><ul class="rulist" id="detailpoints"><li>Offline-Design</li><li>Keine Daten angebunden</li><li>Tastatur vollständig nutzbar</li></ul></div>
+  <div class="rhead">// HARDWARE-STATUS</div>
+  <div class="rightpanel"><div class="statrow"><span>Stream Deck</span><strong id="sdconn">NICHT GEPRÜFT</strong></div><div class="statrow"><span>Belegung</span><strong>NAVI / PTT / OK</strong></div><div class="statrow"><span>Bibliothek</span><strong>NICHT VERKNÜPFT</strong></div><div class="statrow"><span>Laufwerke</span><strong>NICHT ANALYSIERT</strong></div><div class="statrow"><span>KI</span><strong>NICHT GESTARTET</strong></div><div class="statrow"><span>Netzwerk</span><strong>NICHT BENÖTIGT</strong></div></div>
+  <div class="rhead">// EINGABE</div>
+  <div class="prompt">&gt; <span id="lastaction">READY FOR INPUT</span><br>&gt; UI MODE: <span style="color:#a1f1c8">STANDALONE</span><br>&gt; BOOT-DATEN: <span class="accent">NOT CONNECTED</span></div>
+  <p class="small">Das Stream Deck steuert Hoch, Runter, Links, Rechts, OK, Zurück, Vor und ARK VOICE (Taste unten, zweite von links). Die sichtbare 15-Tasten-Matrix wurde absichtlich aus der Oberfläche entfernt.</p>
+ </aside>
+ <footer class="bottom"><span>ARK CONTROL DECK V1.4.5.3 · ARGOS · BIBEL · WIKIPEDIA · VOICE · OFFLINE PROTOTYPE</span><span>INPUT <strong id="inputmode">KEYBOARD / MOUSE</strong></span><span>READ ONLY SOURCES · NO CLOUD</span></footer>
+</div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalhead"><div class="dialog"><h2 id="modalhead">ARK // BEDIENUNG</h2><div class="dialog-grid"><div><b>Tastatur</b><small>Pfeiltasten = Navigation · Enter = OK · Bild ↑/↓ = Wikipedia-Links · Backspace = Zurück · Shift+Backspace = Vor.</small></div><div><b>Navigation</b><small>Esc = Startseite · ? = Hilfe · Tab = zwischen Elementen wechseln.</small></div><div><b>Gamepad</b><small>D-Pad / linker Stick = Navigation · A = OK · B = Zurück.</small></div><div><b>Physisches Stream Deck</b><small>Mittlere Reihe außen: voriger/nächster Wikipedia-Link · innen: links, OK, rechts. Untere Reihe: zurück, PTT, runter, vor.</small></div></div><p class="small">Wikipedia und Bibel sind lokal nutzbar, sofern die jeweiligen Dateien vorhanden sind. Die App-Symbole öffnen vorhandene ARK-Funktionen. Nicht umgesetzte Funktionen werden nicht als startbare Apps angezeigt.</p><button class="close" id="closeHelp">VERSTANDEN / ESC</button></div></div>
+<script src="js/00-core-and-media.js"></script>
+<script src="js/10-gabriel-seraph.js"></script>
+<script src="js/20-uriel-and-navigation.js"></script>
+<script src="js/30-input-and-control.js"></script>
+<script src="js/40-michael-tools.js"></script>
+<script src="js/50-michael-ollama.js"></script>
+<script src="js/install-dashboard.js"></script>
+<script src="js/origin.js"></script>
+<script src="js/origin_patch_ui.js"></script>
+
+
+<script src="js/origin_switch_ui.js"></script>
+<script src="js/origin_safe_ui.js"></script>
+<script src="js/origin_simple_ui.js"></script>
+  <script src="js/raziel.js" defer></script>
+</body></html>

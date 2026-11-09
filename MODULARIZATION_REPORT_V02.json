@@ -1,0 +1,57 @@
+{
+  "tool": "ARK Modularizer V0.2",
+  "timestamp_utc": "2026-11-03T06:02:40.054299+00:00",
+  "source": "<lab-workspace>\\ARK_MODULAR",
+  "target": "<lab-workspace>\\ARK_MODULAR_V02",
+  "mode": "classic JS split, ordered; behavior unchanged by design",
+  "source_js_sha256": "16e799833a89bb34910f3db54990dbfe8f2ddcd260e8a2f1647b6466ba29e799",
+  "reconstructed_js_sha256": "16e799833a89bb34910f3db54990dbfe8f2ddcd260e8a2f1647b6466ba29e799",
+  "source_html_sha256": "36338d33cf7cfa2610f79dda2797986c1a71fe4ea42d3351b93f2636b9673dc5",
+  "new_html_sha256": "9181870076f394e090088da9755f198a10aee2733019a6da6fc7e66bf75793f1",
+  "files": [
+    {
+      "name": "00-core-and-media.js",
+      "bytes": 43194,
+      "lines": 437,
+      "sha256": "d37daa20ab53743cb5307ee023a25abacd657eba97fc30654c7793fadf7a5f26",
+      "syntax": "node --check: OK"
+    },
+    {
+      "name": "10-gabriel-seraph.js",
+      "bytes": 25582,
+      "lines": 326,
+      "sha256": "fde8c4b763e768af838ea6f77dc29061667e60b556467f8e19369999361c1a98",
+      "syntax": "node --check: OK"
+    },
+    {
+      "name": "20-uriel-and-navigation.js",
+      "bytes": 25965,
+      "lines": 429,
+      "sha256": "10c7000d84c239a43940c57a730de313e2d4551160bbf27f56125636b4fce6e5",
+      "syntax": "node --check: OK"
+    },
+    {
+      "name": "30-input-and-control.js",
+      "bytes": 24227,
+      "lines": 285,
+      "sha256": "78ca93b4f990231c70261cf3168e45515ae12ba06a56ce8aa7cd3e8ebd4ce567",
+      "syntax": "node --check: OK"
+    },
+    {
+      "name": "40-michael-tools.js",
+      "bytes": 13034,
+      "lines": 116,
+      "sha256": "c9ca1e03a4a7fcc633dba6d11304f2da73c8ed93bd298b1463ff882064ada9d6",
+      "syntax": "node --check: OK"
+    },
+    {
+      "name": "50-michael-ollama.js",
+      "bytes": 5816,
+      "lines": 102,
+      "sha256": "aeeba20183a4dd8eb20686e264b35fe627a4d59f2bc09c70c7fd52afc9ff1fbb",
+      "syntax": "node --check: OK"
+    }
+  ],
+  "source_go_unchanged": true,
+  "warning": "Nur Quelltext-/Buildtests; echter Windows-Regressionslauf steht noch aus."
+}

@@ -1,0 +1,8 @@
+{
+  "status": "READY_FOR_LAB_BUILD",
+  "version": "0.4.1",
+  "source": "<lab-workspace>\\ARK_ORIGIN_V04",
+  "output": "<lab-workspace>\\ARK_ORIGIN_V041",
+  "production_untouched": true,
+  "runtime_tested": false
+}

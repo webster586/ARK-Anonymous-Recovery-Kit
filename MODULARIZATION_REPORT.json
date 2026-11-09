@@ -1,0 +1,17 @@
+{
+  "tool": "ARK Modularizer V0.1",
+  "timestamp_utc": "2026-11-03T05:40:34.954874+00:00",
+  "source": "<project-root>",
+  "target": "<lab-workspace>\\ARK_MODULAR",
+  "mode": "stage-1 extract CSS + classic JS",
+  "source_index_sha256": "e6cf1cbdc2d9b3eacd8a9de0a5ab7f7f3a30ad5aa99b9f7744cbf245cd3c4221",
+  "output_index_sha256": "36338d33cf7cfa2610f79dda2797986c1a71fe4ea42d3351b93f2636b9673dc5",
+  "javascript_exact_sha256": "16e799833a89bb34910f3db54990dbfe8f2ddcd260e8a2f1647b6466ba29e799",
+  "css_rebased": true,
+  "source_main_go_sha256": "f12f7caf84913bc08ee3461c5b8084e7884378638d9763cf50614605441e521c",
+  "warnings": [
+    "Noch kein Laufzeittest durchgeführt.",
+    "Go-EXE aus src neu kompilieren.",
+    "Produktionsordner nicht automatisch aktualisieren."
+  ]
+}

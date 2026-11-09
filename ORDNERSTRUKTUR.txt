@@ -1,0 +1,20 @@
+ARK Windows v1.4.5.3 – geordnetes Paket
+
+START:
+  START_ARK.bat starten (im selben Ordner wie die EXE).
+
+ORDNER:
+  Dokumentation/Archiv  – ältere Versionshinweise; nur zur Nachlese
+  Dokumentation         – Implementierungsstatus und aktueller NRW3D-Testbericht
+  models/               – Platzhalter für lokale Sprachmodelle
+  whisper-runtime/      – lokale Whisper-Runtime (falls eingerichtet)
+  tools/                – externe Tools und Argos-Setup
+  icons/                – Symboldateien/Platzhalter
+  kiwix-tools/          – Kiwix-Hilfswerkzeuge/Platzhalter
+
+Die Anwendungsdateien, Start- und Einrichtungsskripte, Konfiguration und
+relativen Laufzeitpfade sind unverändert. Der Inhalt wurde nur sortiert.
+Es wurden keine NRW-Geodaten in dieses ZIP kopiert.
+Das Paket enthaelt absichtlich keine Quellcodes oder Screenshot-Archive.
+
+Bitte in einen neuen Ordner entpacken; nicht in bestehende Installation.

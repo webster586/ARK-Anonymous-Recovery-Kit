@@ -1,0 +1,18 @@
+{
+  "tool": "ARK-00 Origin V0.1 LAB installer",
+  "utc": "2026-11-03T06:15:10.299493+00:00",
+  "source": "<lab-workspace>\\ARK_MODULAR_V02",
+  "target": "<lab-workspace>\\ARK_ORIGIN_V01",
+  "changed": [
+    "src/main.go",
+    "src/ui/index.html",
+    "src/ui/js/20-uriel-and-navigation.js"
+  ],
+  "new": [
+    "src/origin.go",
+    "src/ui/js/origin.js",
+    "src/ui/css/origin.css"
+  ],
+  "source_main_sha256": "87129a49beeca11360f4b01fe06b00fbcfffb35456bd5b818daebc896f9efe67",
+  "warning": "Windows runtime test pending. Source and production untouched."
+}

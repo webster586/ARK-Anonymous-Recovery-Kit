@@ -1,0 +1,12 @@
+# Personal/local state: install bindings contain this machine's own paths
+# (e.g. drive letters, media locations) and must never be committed.
+ARK_STATE/
+
+# Scratch/test artifacts
+*.log
+_stage_test/
+_verify_extract/
+
+# Go build cache (none expected to be versioned here)
+src/*.exe
+src/*.test

@@ -1,0 +1,21 @@
+{
+  "tool": "Origin V0.2.3 LAB UI installer",
+  "source": "<lab-workspace>\\ARK_ORIGIN_V01",
+  "target": "<lab-workspace>\\ARK_ORIGIN_V023",
+  "utc": "2026-11-03T06:45:55.207045+00:00",
+  "changed": [
+    "src/main.go",
+    "src/ui/index.html",
+    "src/ui/css/origin.css"
+  ],
+  "new": [
+    "src/origin_patch_ui.go",
+    "src/origin_patch_engine.py",
+    "src/ui/js/origin_patch_ui.js"
+  ],
+  "notes": [
+    "Python 3 required",
+    "No writes to production or original ZIP files",
+    "Windows runtime not tested"
+  ]
+}

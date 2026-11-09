@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARK Visualizer Studio v1.4 · 24 Effekte</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,Segoe UI,Arial,sans-serif}*{box-sizing:border-box}body{margin:0;background:#101217;color:#eef0f5}.wrap{max-width:1200px;margin:auto;padding:20px}h1{font-size:1.35rem;margin:0 0 18px}.controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}button,select,input{font:inherit}button,select{background:#222934;color:#fff;border:1px solid #49536a;border-radius:7px;padding:10px}button{cursor:pointer}button:disabled{opacity:.4;cursor:default}select{max-width:100%;min-width:240px;flex:1}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #6fd4f5}#stage{position:relative;background:#060a0f;border-radius:8px;overflow:hidden;border:1px solid #303b46}#wave{width:100%;height:min(55vh,530px);min-height:260px;display:block}#stage:not(:fullscreen){padding-bottom:210px}#stage:fullscreen{width:100vw;height:100vh;border:0;border-radius:0}#stage:fullscreen #wave{height:100%;min-height:0}#status{margin:13px 0;color:#bed0e3;overflow-wrap:anywhere}small{display:block;color:#9da9b9;line-height:1.5}
+#toolbar{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:min(1020px,calc(100% - 24px));height:200px;opacity:0;pointer-events:none;transition:opacity .22s;z-index:4}#stage:not(:fullscreen) #toolbar,#stage:fullscreen.show-ui #toolbar{opacity:1;pointer-events:auto}#stage:not(:fullscreen) #leave{display:none}
+.slider-menu{position:absolute;bottom:48px;left:0;right:0;display:flex;align-items:stretch;gap:10px;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;scroll-snap-type:x proximity;padding:8px max(14px,calc(50% - 78px));scrollbar-width:thin;scrollbar-color:#657587 #151c27;touch-action:pan-x;mask-image:linear-gradient(to right,transparent,#000 4%,#000 96%,transparent)}
+.slider-menu button{flex:0 0 156px;width:156px;min-height:54px;white-space:normal;font-size:12px;line-height:1.3;padding:8px;scroll-snap-align:center;border:1px solid #536076;background:#151b26;box-shadow:0 4px 12px #0008}
+.slider-menu button.selected{background:#195951;border-color:#5de4bd}.slider-menu button.highlight{border-color:#fff;background:#28354b}
+.wheel-controls{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:38px;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:10px;background:#131922ed;padding:5px 10px;white-space:nowrap}.wheel-controls button{padding:5px 10px;font-size:12px}
+.preview{position:absolute;bottom:119px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:#131922f5;border:1px solid #475366;border-radius:10px;padding:5px 10px;white-space:nowrap;max-width:95%}.preview canvas{width:140px;height:66px;background:#060a0f;border-radius:5px}.preview strong{font-size:12px;max-width:200px;white-space:normal}
+#settings{position:absolute;right:18px;top:18px;bottom:auto;width:min(340px,calc(100% - 36px));max-height:calc(100% - 60px);overflow:auto;background:rgba(18,23,31,.97);border:1px solid #586071;border-radius:13px;padding:16px;box-shadow:0 7px 34px #000b;display:none;z-index:6}#settings.open{display:block}#settings h2{font-size:1rem;margin:0 0 12px}#settings label{display:block;font-size:.88rem;margin:13px 0 6px}#settings input[type=range]{display:block;width:100%;accent-color:#5de4bd}#settings select{width:100%;min-width:0}#settings input[type=color]{width:100%;height:38px;background:transparent;border:0;cursor:pointer}#settings .heading{display:flex;justify-content:space-between;align-items:center}#settings .heading button{padding:4px 9px}#settings output{float:right;color:#b5d4d0;font-variant-numeric:tabular-nums}#settings .row{display:flex;gap:8px;margin-top:14px}#settings .row button{flex:1}
+@media(max-width:650px){.slider-menu button{flex-basis:130px;width:130px;font-size:11px}.slider-menu{padding-left:calc(50% - 65px);padding-right:calc(50% - 65px)}.preview canvas{width:100px;height:51px}#settings{top:10px;max-height:calc(100% - 215px)}}
+
+/* ARK v1.3.9: Embedded original visualizer renderer, no input capture controls. */
+html,body{width:100%;height:100%;overflow:hidden;margin:0;background:#030c0e}
+.wrap{height:100dvh;width:100%;max-width:none;margin:0;padding:0}
+.wrap>h1,.controls,#status,.wrap>small{display:none!important}
+#stage,#stage:not(:fullscreen){height:100dvh;width:100%;border:0;border-radius:0;padding:0;background:#030c0e}
+#stage #wave,#stage:not(:fullscreen) #wave{display:block;width:100%;height:100%;min-height:0}
+#toolbar{display:none!important}
+#settings{z-index:10;right:6px;top:6px;max-height:calc(100% - 12px);width:min(335px,calc(100% - 12px));font-size:12px}
+</style>
+</head>
+<body><main class="wrap">
+<h1>Visualizer · Audioeingang</h1>
+<div class="controls"><button id="start">Audioeingang aktivieren</button><label for="devices">Eingang:</label><select id="devices" disabled><option>Nach Freigabe auswählen</option></select><button id="stop" disabled>Stoppen</button><button id="fullscreen">Vollbild</button></div>
+<div id="stage"><canvas id="wave" aria-label="Live-Visualisierung des gewählten Audioeingangs"></canvas>
+<nav id="toolbar" aria-label="Visualizer-Slidermenü"><div class="preview"><canvas id="mini" width="280" height="132" aria-label="Live-Vorschau des hervorgehobenen Visualizers"></canvas><strong id="previewName">Waveform</strong></div><div class="slider-menu" id="wheel"></div><div class="wheel-controls"><button id="prev" type="button" aria-label="Vorherige Visualizer">◀</button><button id="options" type="button">Einstellungen</button><button id="next" type="button" aria-label="Nächste Visualizer">▶</button><button id="leave" type="button">Vollbild beenden</button></div></nav>
+<aside id="settings" aria-label="Visualizer-Einstellungen"><div class="heading"><h2 id="settingsTitle">Einstellungen</h2><button id="closeSettings" type="button" aria-label="Einstellungen schließen">✕</button></div><div id="settingFields"></div><div class="row"><button id="reset" type="button">Standardwerte</button></div></aside></div>
+<p id="status" role="status" aria-live="polite">Noch kein Audioeingang aktiv.</p><small>Es werden nur echte Eingangssignale dargestellt. Keine Testsignale oder Audioausgabe. Im Vollbild: Maus bewegen, im horizontalen Slidermenü zwischen Visualizern wechseln und anklicken. Die Live-Vorschau verwendet ausschließlich den ausgewählten Audioeingang. Farbverläufe können pro Visualizer eingestellt werden. Retro-Effekte sind eigenständige Hommagen, keine Microsoft-Originale. ESC beendet den Vollbildmodus.</small>
+</main><script src="app.js"></script></body></html>

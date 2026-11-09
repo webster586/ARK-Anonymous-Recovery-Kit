@@ -1,0 +1,8 @@
+ARK Produktionsstand 1.4.5.3+20261103-NAMEN
+Basis: 20261102-0722 (mit STL-Nord-Sued-Fix).
+Aenderung: Sichtbare Namen in src/ui/index.html: ARK-01 Raziel, ARK-02 Uriel, ARK-03 Gabriel, ARK-04 Michael, ARK-05 Noah.
+Windows-x64-EXE neu gebaut. Go-Tests konnten unter Linux nicht ausgefuehrt werden (Windows-Test-EXE).
+Nicht getestet: Windows-Start/Bedienung auf I:.
+
+SICHERER TEST: ZIP in SEPARATEN Ordner auf I: entpacken und dort starten.
+NICHT ueber die laufende Produktionsinstallation entpacken! Bei spaeterer produktiver Uebernahme zuerst Backup erstellen und Prozesse beenden.

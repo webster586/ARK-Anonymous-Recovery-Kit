@@ -1,0 +1,9 @@
+ARK Seraph / David Audioquellen LAB
+Basis: ARK_Namen_Test 2026-11-03 00:44
+Vollarchiv inkl. aller Originaldateien.
+Aenderungen: EXE und src/ui/index.html.
+Modi: SERAPH, MIKROFON, MIX.
+Systemmodus erfasst Seraph-Player, NICHT globalen Windows-Sound.
+Status: Kompiliert, Windows Live-Test ausstehend.
+LAB: Nach dem Entpacken ARK_Namen_Test starten und Uriel/Kiwix sowie Seraph testen.
+Vor Produktionsuebernahme keine Freigabe.

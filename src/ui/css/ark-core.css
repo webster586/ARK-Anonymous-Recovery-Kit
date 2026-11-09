@@ -1,0 +1,515 @@
+
+:root{color-scheme:dark;--bg:#070c0e;--s0:#0a1114;--s1:#101b1f;--s2:#142328;--s3:#192e31;--line:#2b4547;--text:#e8f0e9;--muted:#8ca2a0;--dim:#506b6d;--mint:#86edc3;--teal:#2fb8a1;--amber:#f1b867;--red:#e98981;--blue:#88b8dd;--shade:0 20px 60px #0009}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Inter,'Segoe UI',system-ui,sans-serif}button,input{font:inherit}button{cursor:pointer;color:inherit}button:focus-visible,input:focus-visible{outline:2px solid #e8bb74;outline-offset:3px}button:disabled{opacity:.5;cursor:not-allowed}::selection{background:#3f806f;color:white}
+body:before{content:'';position:fixed;inset:0;background:linear-gradient(90deg,#070d10eb,#070d10dc 60%,#081216e5),url('../assets/ark_background.png') center/cover no-repeat;opacity:.44;pointer-events:none}body:after{content:'';pointer-events:none;position:fixed;inset:0;background:repeating-linear-gradient(to bottom,transparent 0,transparent 5px,#d1ffdb06 6px);z-index:40}
+button{border:0}.app{position:relative;z-index:1;min-height:100vh;max-width:1900px;margin:auto;display:grid;grid-template-columns:230px minmax(480px,1fr) 290px;grid-template-rows:78px 1fr 40px;box-shadow:0 0 90px #0007}.topbar{grid-column:1/-1;background:#0b1519ed;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 26px;gap:18px}.brand{display:flex;align-items:center;gap:14px;min-width:220px}.emblem{width:47px;height:47px;clip-path:polygon(50% 0%,94% 22%,94% 78%,50% 100%,6% 78%,6% 22%);background:linear-gradient(140deg,#9bf3cc,#358d83);display:grid;place-items:center;font-family:Consolas,monospace;color:#061210;font-size:25px;font-weight:900}.brandname{font-family:Consolas,monospace;font-size:28px;line-height:.95;letter-spacing:.16em;font-weight:800}.brandname small{font-size:9px;display:block;letter-spacing:.19em;color:#9fb8ae;margin-top:7px}.topcenter{font:11px/1.7 Consolas,'Courier New',monospace;letter-spacing:.18em;color:#a3c4bc;text-align:center}.topcenter strong{color:var(--mint)}.topright{display:flex;align-items:center;gap:17px;white-space:nowrap}.clock{font:13px Consolas,monospace;color:#d5e4dc}.chip{font:10px Consolas,monospace;letter-spacing:.04em;border:1px solid #395d56;background:#0e2926;padding:7px 10px;border-radius:4px;color:#a7f2d0}.chip.warning{color:#f2c591;border-color:#6e5739;background:#282016}.dot{display:inline-block;width:7px;height:7px;background:#76e8b5;border-radius:50%;margin-right:7px;box-shadow:0 0 12px #65edb9}
+.sidebar{background:#091317df;border-right:1px solid var(--line);display:flex;flex-direction:column;padding:26px 13px 16px;gap:8px}.eyebrow{font:11px Consolas,monospace;letter-spacing:.14em;color:var(--dim);margin:2px 10px 13px}.sidebtn{width:100%;display:flex;align-items:center;gap:13px;border:1px solid transparent;border-radius:6px;background:transparent;text-align:left;padding:11px 12px;color:#a5bcba;transition:background .12s,border-color .12s}.sidebtn:hover,.sidebtn.selected{background:linear-gradient(90deg,#173b34,#122222);border-color:#3f6c60;color:#d9ffed}.sidebtn.selected:before{content:'';position:absolute;margin-left:-13px;width:3px;height:25px;background:var(--mint)}.sideicon{font:800 15px Consolas,monospace;color:var(--mint);width:35px;text-align:center;border-right:1px solid #3b4e4d;padding-right:8px}.sidetxt strong{display:block;font-size:12px;letter-spacing:.02em}.sidetxt small{display:block;font-size:10px;color:#758f90;margin-top:4px}.sidebottom{margin-top:auto;display:grid;gap:10px}.sidehint{background:#122323;border:1px solid #355350;padding:13px 12px;border-radius:6px;font:11px/1.65 Consolas,monospace;color:#a2b8b2}.sidehint span{color:var(--mint)}.mini-btn{border:1px solid #3a595a;padding:10px;text-align:left;background:#142528;border-radius:6px;font:12px Consolas,monospace}.mini-btn:hover{background:#22423f}
+.main{padding:24px clamp(18px,2.4vw,40px) 18px;min-width:0;overflow:auto}.path{font:11px Consolas,monospace;color:#79bba8;letter-spacing:.13em}.mainheading{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:10px 0 17px}.mainheading h1{font-size:clamp(24px,2.45vw,38px);letter-spacing:-.04em;margin:0;font-weight:760}.mainheading p{margin:5px 0 0;font-size:12px;line-height:1.5;color:#8fa8a3}.mode{font:10px Consolas,monospace;color:#edc489;border:1px solid #665137;padding:9px;white-space:nowrap;border-radius:4px}.hero{position:relative;isolation:isolate;overflow:hidden;border:1px solid #37635a;background:linear-gradient(98deg,#152d2bd9 0%,#0f1d21ea 60%,#122827 100%);min-height:178px;padding:25px 26px 24px;margin-bottom:20px;box-shadow:var(--shade);border-radius:8px}.hero:before{content:'';position:absolute;width:310px;height:310px;border:1px solid #7ee5b51c;border-radius:100%;right:-100px;top:-95px;box-shadow:0 0 0 30px #7ee5b50b,0 0 0 80px #7ee5b508;z-index:-1}.hero:after{content:'A / R / K';position:absolute;right:24px;bottom:13px;opacity:.13;font:900 48px Consolas,monospace;letter-spacing:-.05em;z-index:-1}.hero .kicker{font:11px Consolas,monospace;color:#9ff9c8;letter-spacing:.21em}.hero h2{font-size:clamp(23px,2.25vw,35px);margin:12px 0 8px;letter-spacing:-.04em}.hero p{font-size:13px;color:#aac6bc;line-height:1.6;max-width:660px;margin:0 0 13px}.tinybadge{font:10px Consolas,monospace;display:inline-block;padding:6px 9px;background:#1c3932;color:#aff6d0;border:1px solid #456e5a;border-radius:4px}.tinybadge.amber{color:#f8c991;background:#2d2518;border-color:#735938}
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin:17px 0 12px;gap:12px}.sec-head h3{font:700 12px Consolas,monospace;color:#dbe8dc;letter-spacing:.14em;margin:0}.sec-head span{font:10px Consolas,monospace;color:#718f90}.modulegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.module{border:1px solid #324c4b;border-radius:7px;background:linear-gradient(146deg,#142327dd,#0e191ce8);padding:15px 15px;min-height:102px;display:flex;gap:12px;align-items:flex-start;text-align:left;transition:.12s transform,.12s background}.module:hover,.module.active{background:#1c3935;border-color:#75c6a2;transform:translateY(-1px)}.micon{height:32px;width:32px;border:1px solid #46665b;display:grid;place-items:center;color:#a3f3c9;border-radius:6px;flex-shrink:0;font-size:17px}.module strong{display:block;font-size:12px;margin:1px 0 7px}.module small{font-size:10px;color:#91a9a5;line-height:1.4}.module .mstatus{display:block;font:9px Consolas,monospace;color:#c6a57f;margin-top:8px}.searchrow{display:flex;align-items:center;gap:9px}.searchrow input{background:#0d191c;border:1px solid #2b4c4b;border-radius:5px;padding:9px 12px;color:white;font-size:12px;min-width:0;width:min(240px,100%)}.searchrow input:focus{border-color:#83d7ba}.cleanbtn{border:1px solid #375b52;padding:8px 10px;background:#152a29;border-radius:5px;font-size:11px}.cleanbtn:hover{background:#284a3e}.empty{background:#101a1f;border:1px dashed #37514d;padding:22px;border-radius:7px;color:var(--muted);font-size:12px;grid-column:1/-1}.decksection{border:1px solid #33504b;border-radius:10px;background:linear-gradient(#101d20ed,#0a1317fa);padding:17px 18px 19px;margin-top:21px;box-shadow:var(--shade)}.decktop{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}.decktitle{font:700 12px Consolas,monospace;letter-spacing:.13em}.deckmeta{font:10px Consolas,monospace;color:#799d9c}.banks{display:flex;gap:6px}.bankbtn{font:10px Consolas,monospace;background:#142527;color:#819e9b;border:1px solid #2e4b4b;padding:7px 11px;border-radius:5px}.bankbtn.active{background:#264337;border-color:#69b69d;color:#d3f9e3}.deck-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}.key{height:84px;min-width:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;border-radius:7px;border:1px solid #334f4b;box-shadow:inset 0 0 0 3px #142427,0 4px 0 #04090b;background:linear-gradient(160deg,#25393b,#0b171d);transition:transform .1s,border-color .1s}.key:hover,.key.active,.key:focus-visible{background:linear-gradient(155deg,#355c4a,#132821);border-color:#a3f0bd;transform:translateY(-1px)}.key:active{transform:translateY(2px);box-shadow:inset 0 0 0 3px #142427,0 1px 0 #04090b}.key:before{content:'';position:absolute;top:8px;right:8px;width:4px;height:4px;border-radius:50%;background:#749391}.key.active:before{background:#f9c276;box-shadow:0 0 8px #f4b85b}.key .ico{font-size:22px;color:#a8eac5;line-height:1}.key .label{font:700 11px Consolas,monospace;letter-spacing:.03em}.key .keynum{position:absolute;bottom:5px;right:7px;color:#789391;font:8px Consolas,monospace}.deckhelp{color:#7f9d98;font:10px/1.6 Consolas,monospace;margin-top:15px}.accent{color:var(--amber)}
+.right{min-width:0;background:#0a1519ed;border-left:1px solid #2a4646;padding:24px 16px;display:flex;flex-direction:column;gap:17px}.rhead{font:11px Consolas,monospace;letter-spacing:.14em;color:#8dbbb1}.rightpanel{padding:16px;background:#101e22;border:1px solid #31514f;border-radius:7px}.rightpanel h3{font-size:16px;margin:10px 0 8px;letter-spacing:-.01em}.rightpanel p{font-size:12px;line-height:1.7;color:#a2b8b4;margin:0}.statrow{display:flex;justify-content:space-between;gap:13px;padding:9px 0;border-bottom:1px solid #2b4142;font:11px Consolas,monospace;color:#8da7a2}.statrow:last-child{border:0}.statrow strong{color:#d0e8dd;text-align:right}.rulist{padding-left:16px;font-size:11px;line-height:1.8;color:#a5bbb3;margin:10px 0 0}.tag{font:10px Consolas,monospace;color:#f7c88c}.prompt{background:#0c1918;border:1px solid #2e4a42;padding:12px;color:#aac7b7;font:11px/1.75 Consolas,monospace;border-radius:6px}.kbd{border:1px solid #4a625d;padding:2px 5px;background:#24332e;color:#d3ebdb;border-radius:4px}.bottom{grid-column:1/-1;border-top:1px solid #29413f;background:#0a1216ed;display:flex;align-items:center;justify-content:space-between;padding:0 23px;gap:12px;font:10px Consolas,monospace;color:#789795;letter-spacing:.04em}.bottom strong{color:#b9e1cf}.modal{position:fixed;z-index:100;inset:0;background:#010607cf;display:none;place-items:center;padding:22px}.modal.show{display:grid}.dialog{max-width:630px;width:100%;padding:28px;border:1px solid #639b87;border-radius:10px;background:#102121;box-shadow:0 20px 100px #000d}.dialog h2{margin:0 0 20px}.dialog-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.dialog-grid div{background:#162d2d;padding:13px;border:1px solid #31544b;border-radius:6px;font-size:13px}.dialog-grid small{display:block;color:#9bb7ac;margin-top:6px}.dialog .close{margin-top:19px;padding:12px 18px;background:#98ebbd;color:#10201a;font-weight:800;border-radius:5px}.small{font-size:11px;color:#9ab0aa;line-height:1.7}
+@media(max-width:1420px){.app{grid-template-columns:196px minmax(460px,1fr) 252px}.sidebar{padding-inline:8px}.sidebtn{padding:10px 7px}.right{padding:22px 10px}.modulegrid{grid-template-columns:repeat(2,minmax(0,1fr))}.key{height:76px}}
+@media(max-width:1060px){.app{grid-template-columns:72px minmax(0,1fr);grid-template-rows:76px 1fr 36px}.sidebar{padding:14px 7px}.sidebar .eyebrow,.sidetxt,.sidebottom{display:none}.sidebtn{justify-content:center}.sideicon{border:0;padding:0}.right{grid-column:2;grid-row:3;display:none}.bottom{grid-row:3}.main{padding:18px}}
+@media(max-width:620px){.app{grid-template-columns:1fr;grid-template-rows:auto auto 1fr auto}.topbar{grid-row:1;padding:10px}.brand{min-width:0}.topcenter,.clock{display:none}.sidebar{grid-row:2;grid-column:1;flex-direction:row;overflow-x:auto;padding:6px}.sidebtn{min-width:42px}.main{grid-row:3;grid-column:1}.bottom{grid-row:4;grid-column:1;font-size:8px;padding:12px}.mainheading{align-items:flex-start}.mode{display:none}.modulegrid{grid-template-columns:1fr 1fr}.deck-grid{gap:5px}.key{height:70px}.key .ico{font-size:16px}.key .label{font-size:9px}.decksection{padding:12px}.hero{padding:17px;min-height:150px}.searchrow input{width:140px}.dialog-grid{grid-template-columns:1fr}}
+@media(max-width:360px){.modulegrid{grid-template-columns:1fr}}
+
+/* ARK v0.4 – 13-inch tablet first: 1280x800 and 1920x1200 landscape, portrait fallback */
+:root{--focus:#f7c979}
+html{overscroll-behavior:none}
+body{overflow-x:hidden}
+button,input{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button:focus-visible,input:focus-visible,.module:focus{outline:2px solid var(--focus);outline-offset:2px;box-shadow:0 0 0 4px #f1b86725}
+.app{height:100dvh;min-height:550px;grid-template-columns:202px minmax(0,1fr);grid-template-rows:66px minmax(0,1fr) 36px}
+.topbar{padding:0 20px}.brand{min-width:190px}.emblem{width:42px;height:42px;font-size:24px}.brandname{font-size:25px}.topcenter{font-size:10px}.topright{gap:8px}
+.tophelp{border:1px solid #40645b;background:#16302d;border-radius:5px;min-height:44px;padding:0 13px;color:#c5e9d7;font:700 12px Consolas,monospace;white-space:nowrap}
+.tophelp:hover,.tophelp:focus-visible{background:#295548}
+.sidebar{padding:17px 10px 14px;overflow-y:auto;min-height:0;gap:4px}
+.sidebar .eyebrow{margin:3px 8px 9px;font-size:10px}
+.sidebtn{min-height:57px;padding:10px;border-radius:7px;gap:10px}
+.sideicon{font-size:15px;width:34px}.sidetxt strong{font-size:12px}.sidetxt small{font-size:9px}
+.main{padding:17px 23px 22px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#365c51 transparent}
+.path{font-size:10px}.mainheading{margin:8px 0 11px}.mainheading h1{font-size:clamp(23px,2.7vw,34px)}.mainheading p{font-size:12px;margin-top:4px}
+.hero{min-height:132px;padding:18px 21px;margin-bottom:16px}.hero h2{font-size:clamp(21px,2.5vw,31px);margin:9px 0 4px}.hero p{font-size:12px;line-height:1.45;margin-bottom:8px}.hero:after{font-size:37px}
+.sec-head{margin:13px 0 11px}.sec-head h3{font-size:12px;white-space:nowrap}.sec-head h3 span{color:#7d9e94;font-weight:400;font-size:10px}
+.searchrow input{height:44px;width:230px;font-size:13px}.cleanbtn{min-height:44px;min-width:44px;font-size:18px}
+.modulegrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.module{min-height:103px;padding:14px 13px;gap:10px;align-items:flex-start;border-color:#365850}
+.module strong{font-size:14px;margin-top:0;margin-bottom:5px;line-height:1.25}
+.module small{font-size:11px;line-height:1.4}
+.module .mstatus{font-size:9px;margin-top:7px}
+.micon{height:35px;width:35px;font-size:18px;flex:0 0 35px}
+.module.active{border-color:#599888;background:linear-gradient(146deg,#1a332e,#112224)}
+.module:focus-visible,.module:focus{background:#23473f;border-color:#f7c979;transform:none}
+.navhint{font:10px/1.7 Consolas,monospace;color:#85a8a0;padding:14px 0 4px}.navhint span{color:#e5b66e}
+.right{display:none}.bottom{padding:0 18px;font-size:10px;gap:7px}.bottom span:first-child{white-space:nowrap}
+@media(min-width:1600px){.app{grid-template-columns:218px minmax(0,1fr) 277px}.right{display:flex;overflow-y:auto}.modulegrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1051px) and (max-width:1290px){.topcenter{display:none}.modulegrid{gap:9px}.main{padding-inline:17px}.module{padding:12px;min-height:100px}.module strong{font-size:13px}.module small{font-size:10px}}
+@media(max-width:1050px){
+ .app{grid-template-columns:1fr;grid-template-rows:62px 70px minmax(0,1fr) 36px}
+ .topbar{grid-column:1;grid-row:1;padding:0 15px}.topcenter{display:none}.brand{min-width:0}.clock{display:none}
+ .sidebar{grid-column:1;grid-row:2;display:flex;flex-direction:row;align-items:center;padding:5px 10px;gap:7px;border-right:0;border-bottom:1px solid #2f5350;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin}
+ .sidebar .eyebrow,.sidebar .sidebottom{display:none}.sidebtn{min-width:122px;width:122px;height:56px;min-height:56px;flex:0 0 122px;justify-content:flex-start;padding:7px 9px}.sideicon{width:29px;font-size:13px}.sidetxt{display:block}.sidetxt strong{font-size:11px}.sidetxt small{font-size:8px}.sidebtn.selected:before{display:none}
+ .main{grid-column:1;grid-row:3;padding:16px 19px 24px}.bottom{grid-column:1;grid-row:4}
+ .modulegrid{grid-template-columns:repeat(2,minmax(0,1fr))}.right{display:none}
+}
+@media(max-width:690px){
+ .brandname{font-size:19px}.brandname small{font-size:7px}.emblem{width:35px;height:35px;font-size:20px}.topright .chip.warning{display:none}.tophelp{padding:0 9px}
+ .main{padding:14px 12px 20px}.mainheading{display:block}.mode{display:none}.hero{padding:16px;min-height:130px}.hero:after{font-size:28px}
+ .sec-head{flex-wrap:wrap}.searchrow{width:100%}.searchrow input{flex:1;width:100%}.modulegrid{grid-template-columns:1fr}.module{min-height:85px}.bottom{font-size:9px}.bottom span:first-child{display:none}
+ .dialog-grid{grid-template-columns:1fr}.dialog{max-height:85dvh;overflow-y:auto;padding:19px}
+}
+@media(prefers-reduced-motion:reduce){.module,.sidebtn{transition:none!important}}
+
+/* ARK VOICE / touch and tablet controls */
+.voicebtn{background:#152d2b;border:1px solid #397967;color:#b1ffe0;padding:8px 12px;border-radius:6px;min-height:44px;min-width:96px;touch-action:none;user-select:none;font-size:12px;font-weight:700}
+.voicebtn:hover,.voicebtn:focus-visible{background:#1d4742}
+.voicebtn.recording{background:#63321c;border-color:#f5b26e;color:#ffe1b4;box-shadow:0 0 14px #ffa84b4f}
+.voice-indicator{display:block;font:10px/1.6 Consolas,monospace;color:#a9c3b8;margin-top:6px}
+.voice-indicator.error{color:#f4ad9b}
+@media(max-width:820px){.voicebtn{min-width:74px;padding:8px}.searchrow{flex-wrap:wrap}}
+
+.exit-btn{border-color:#79574c!important;color:#f1bdad!important;background:#231b1c!important;white-space:nowrap}.exit-btn:hover,.exit-btn:focus-visible{background:#452929!important;border-color:#dc9f80!important}
+
+/* ARK-02 Wikipedia, responsive and 13-inch tablet friendly */
+.wiki-panel{margin:16px 0 20px;border:1px solid #3c7264;border-radius:8px;background:#0a1719;padding:14px;box-shadow:0 12px 35px #0008}
+.wiki-panel[hidden]{display:none!important}.wiki-header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}.wiki-header b{color:#b2f4d6;font:700 12px Consolas,monospace;letter-spacing:.1em}.wiki-header p{font:11px Consolas,monospace;color:#a3bbb5;margin:7px 0 0}.wiki-header-actions{display:flex;gap:7px;flex-wrap:wrap}.wiki-settings{border:1px solid #46665b;border-radius:6px;background:#132526;padding:12px;margin:9px 0;font:11px Consolas,monospace;color:#b5dbce}.wiki-settings-row{display:flex;gap:8px;margin:8px 0;flex-wrap:wrap}.wiki-settings input{min-width:220px;flex:1;background:#091719;color:#f0fff9;border:1px solid #557e71;border-radius:4px;padding:10px}.wiki-settings small{color:#9aada7}.wiki-controls{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.wiki-controls button{min-height:39px}.wiki-panel iframe{border:1px solid #2c5650;border-radius:5px;width:100%;height:clamp(360px,55vh,760px);background:#fff;color:#000}
+@media(max-width:820px){.wiki-panel{padding:9px}.wiki-panel iframe{height:56vh}.wiki-header{flex-wrap:wrap}.wiki-controls{gap:5px}}
+/* Read-only Bible folder viewer. Same visual language as Wikipedia. */
+.bible-panel{border-color:#5f735e}.bible-controls{display:flex;gap:10px}.bible-path{font:11px Consolas,monospace;color:#abd0b6;align-self:center;overflow-wrap:anywhere}
+.bible-panel #bibleFilter{background:#0c1b1b;color:#edfff7;border:1px solid #547469;border-radius:5px;padding:10px;min-width:160px;flex:1;font-size:13px}
+.bible-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;max-height:380px;overflow-y:auto;padding:3px}
+.bible-item{width:100%;padding:12px;text-align:left;min-height:56px;background:#102322;border:1px solid #365750;border-radius:6px;display:flex;align-items:center;gap:12px;overflow:hidden}
+.bible-item:hover,.bible-item:focus-visible{background:#1c3b35;border-color:#b5f2cf}.bible-item-icon{font-size:22px;color:#a8e6c2}.bible-item span:last-child{overflow-wrap:anywhere;font-size:13px}
+.bible-preview{margin-top:13px;border:1px solid #42685c;padding:10px;border-radius:6px;background:#091719}
+.bible-previewbar{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap;font-size:12px;margin-bottom:9px;overflow-wrap:anywhere}
+.bible-previewbar a{color:#b5f6d3;text-decoration:underline;font:11px Consolas,monospace}
+.bible-preview iframe{width:100%;height:min(60vh,720px);border:1px solid #54716d;background:#fff}
+.bible-preview img{max-width:100%;max-height:65vh;object-fit:contain;display:block;margin:auto}.bible-preview pre{font-size:14px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;max-height:62vh;overflow:auto;color:#e4e9e3}
+.bible-preview audio,.bible-preview video{max-width:100%;width:100%}.bible-msg{font-size:12px;color:#b8cbc5;padding:13px}
+@media(max-width:820px){.bible-list{grid-template-columns:1fr}.bible-item{min-height:52px}.bible-panel #bibleFilter{min-width:100px}}
+
+/* NRW 3D integration: same focus mode, own independent offline viewport. */
+.nrw3d-panel{height:calc(100dvh - 205px);min-height:410px;display:flex;flex-direction:column;background:#081719;border:1px solid #31514f;border-radius:7px;overflow:hidden;margin-top:12px}
+.nrw3d-panel[hidden]{display:none!important}
+.nrw3d-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#102629;border-bottom:1px solid #31514f;padding:7px 12px;color:#83dfbd;font:11px Consolas,monospace}
+.nrw3d-panel iframe{display:block;flex:1;width:100%;min-height:300px;border:0;background:#081719}
+@media(max-width:900px){.nrw3d-panel{height:calc(100dvh - 165px)}.nrw3d-toolbar{font-size:10px}}
+/* v0.6 FOCUS: no informational cards; exactly one content area at a time. */
+.app{grid-template-columns:202px minmax(0,1fr)!important}
+/* The left navigation persists; only informational panes are removed. */
+.sidebar{display:flex!important;grid-column:1!important;grid-row:2!important;min-width:0;flex-direction:column!important;overflow-y:auto;overflow-x:hidden}
+.sidebar .sidetxt{display:block!important}
+.sidebar .eyebrow{display:block!important}
+.sidebar .sidebottom{display:none!important}
+.sidebar .sidebtn{min-width:0;width:100%;height:auto;min-height:55px;flex:0 0 auto;justify-content:flex-start;gap:10px}
+.sidebar .sideicon{width:34px;flex:0 0 34px;border-right:1px solid #3b4e4d;padding-right:8px}
+.right,.hero,.mode,.navhint{display:none!important}
+.main{grid-column:2!important;grid-row:2!important;width:100%;padding:19px clamp(14px,3vw,42px) 25px}
+.mainheading{margin:9px 0 14px;align-items:center}
+.mainheading h1{font-size:clamp(23px,2.4vw,33px)}
+.mainheading p{color:#8da9a0}
+.sec-head{margin:14px 0 7px}.modulegrid{gap:12px}
+.module{min-height:100px}
+.wiki-panel{background:transparent;border:0;padding:0;margin:8px 0 0;box-shadow:none}
+.wiki-panel iframe{height:calc(100dvh - 300px);min-height:320px}
+.bible-panel{padding:0}
+.module-back{display:none;min-height:44px;border:1px solid #3f8275;border-radius:6px;background:#13332e;color:#cdf7e4;padding:0 16px;font-weight:700;white-space:nowrap}
+.module-back:hover,.module-back:focus-visible{background:#225346}
+.module-mode .module-back{display:block}
+.module-mode .modulegrid,.module-mode #modcount,.module-mode .overview-label{display:none!important}
+.module-mode[data-active-module="knowledge"] #wikiSearchButton{display:inline-flex}
+#wikiSearchButton{display:none}
+#bibleOpenButton{display:none!important}
+.module-mode[data-active-module="bible"] .sec-head{display:none!important}
+.module-mode[data-active-module="bible"] .voice-indicator{display:none!important}
+.module-mode[data-active-module="bible"] .bible-panel{display:block}
+.module-mode[data-active-module="knowledge"] .wiki-panel{display:block}
+.module-placeholder{margin:24px 0;font-size:15px;color:#adc5b9;line-height:1.6}
+.module-placeholder[hidden]{display:none!important}
+.module-mode .module-placeholder{max-width:720px}
+/* Keep only content controls, not redundant status/info panels. */
+.wiki-header,.wiki-settings{background:transparent}
+.wiki-header{margin-bottom:10px}
+.mainheading .path{display:none}
+@media(max-width:1050px){.app{grid-template-rows:62px minmax(0,1fr) 36px!important}.main{grid-row:2;grid-column:1}.bottom{grid-row:3}}
+@media(max-width:690px){.mainheading{display:flex;gap:9px}.module-back{font-size:11px;padding:0 11px}.wiki-panel iframe{height:calc(100dvh - 360px);min-height:280px}}
+
+/* Bible belongs exclusively to the left sidebar, never beside search. */
+#bibleOpenButton{display:none!important}
+[hidden]{display:none!important}
+@media(max-width:1050px){
+ .app{grid-template-columns:174px minmax(0,1fr)!important}
+ .sidebar{padding:12px 7px!important;gap:3px}
+ .sidebar .sidebtn{min-height:53px;padding:7px!important}
+ .sidebar .sidetxt strong{font-size:11px}
+ .sidebar .sidetxt small{font-size:8px}
+}
+@media(max-width:690px){
+ .app{grid-template-columns:142px minmax(0,1fr)!important;grid-template-rows:62px minmax(0,1fr) 36px!important}
+ .sidebar .sidebtn{min-height:48px;gap:6px;padding:5px!important}
+ .sidebar .sideicon{width:25px;flex-basis:25px;font-size:12px;padding-right:4px}
+ .sidebar .sidetxt strong{font-size:10px}
+ .sidebar .sidetxt small{font-size:7px}
+ .main{padding:14px!important}
+}
+
+/* ARK options – a single-module page, not a popover or a 15-key overlay. */
+.settings-panel[hidden]{display:none!important}
+.module-mode[data-active-module="settings"] .sec-head{display:none!important}
+.settings-panel{max-width:850px;margin:8px 0;color:#d9efe7}
+.settings-head{padding:0 2px 18px;border-bottom:1px solid #325c54}
+.settings-head h2{margin:0 0 7px;font:700 19px Consolas,monospace;letter-spacing:.06em}
+.settings-head p{font-size:13px;color:#94aea7;margin:0}
+.settings-card{border:1px solid #376d61;background:#0d2221;padding:22px;margin:18px 0;border-radius:9px}
+.settings-card h3{margin:0 0 20px;font:700 14px Consolas,monospace;letter-spacing:.06em}
+.settings-card label{display:block;margin-bottom:9px;color:#acccc1;font:12px Consolas,monospace}
+.settings-controls{display:flex;gap:11px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.settings-controls select{background:#091719;border:1px solid #4d8378;color:#f4fcf8;min-height:46px;padding:10px;border-radius:5px;flex:1;min-width:180px;font-size:14px}
+.settings-controls button{min-height:46px;padding:10px 14px}
+#micMessage{font-size:12px;color:#9fd9c1;line-height:1.5}
+#micMessage.error{color:#ffba91}
+.mic-identify-results{border:1px solid #35645a;background:#0a1b1d;padding:12px;margin:11px 0;border-radius:7px;font-size:12px}
+.mic-identify-result{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #26453f}
+.mic-identify-result:last-child{border:0}.mic-identify-result span{color:#bad2c7}
+.mic-identify-result small{color:#88ab9e}.mic-identify-results button{margin-top:10px;min-height:44px}
+.settings-note{max-width:660px;font-size:12px;line-height:1.7;color:#8faea8;margin:9px 0 0}
+@media(max-width:690px){.settings-card{padding:13px}.settings-controls select{width:100%}}
+.ark-wiki-link-status{display:inline-flex;align-items:center;min-height:34px;max-width:100%;padding:5px 10px;border:1px solid #386358;border-radius:5px;color:#a5eace;font:11px/1.35 Consolas,monospace;background:#0b2522;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ark-wiki-link-status[hidden]{display:none!important}
+
+/* ARK V1.0: topical Wikipedia entry points, no new data index. */
+.topics-panel{margin:11px 0 16px;max-width:100%;background:#0b191b;border:1px solid #28594f;border-radius:9px;padding:16px 18px}
+.topics-title{font:700 12px/1.5 Consolas,monospace;letter-spacing:.12em;color:#92e8cb;margin-bottom:5px}
+.topics-description{font:12px/1.55 'Segoe UI',sans-serif;color:#9db6ae;margin:0 0 13px}
+.topics-grid{display:flex;gap:9px;flex-wrap:wrap}
+.topic-button{border:1px solid #477267;background:#13332f;color:#d5f8e6;border-radius:6px;min-height:46px;padding:10px 13px;text-align:left;font:600 13px/1.3 'Segoe UI',sans-serif;transition:border-color .1s,background .1s}
+.topic-button:hover,.topic-button:focus-visible,.topic-button.selected{background:#244b40;border-color:#f0be73;color:#fff0ce;outline:2px solid #e3a54e;outline-offset:2px}
+.topic-button:active{transform:translateY(1px)}
+.topics-panel[hidden]{display:none!important}
+/* The iframe stays hidden until local dark styling is installed. Prevent flash of white. */
+#wikiFrame{background:#0a171a!important;visibility:hidden;border:1px solid #335d54;border-radius:7px;color-scheme:dark}
+#wikiFrame.ark-wiki-dark-ready{visibility:visible}
+@media(max-width:800px){.topics-panel{padding:11px}.topics-grid{gap:7px}.topic-button{min-height:43px;padding:8px 10px;font-size:12px}}
+.module-mode #wikiSearchButton{display:inline-flex}
+.module-mode[data-active-module="bible"] #wikiSearchButton,.module-mode[data-active-module="settings"] #wikiSearchButton{display:none}
+.module-mode .topics-panel:not([hidden]){display:block}
+
+/* Stream Deck text entry: small status strip, no duplicate 15-key matrix. */
+.t9-status{font:11px/1.65 Consolas,monospace;color:#a8d5c6;background:#102b28;border:1px solid #3f8477;border-radius:6px;padding:8px 12px;margin:7px 0 9px}
+.t9-status[hidden]{display:none!important}
+#keyboardToggle.t9-on{background:#17453c;color:#baffdf;border-color:#7bd4ad}
+@media(max-width:800px){.t9-status{font-size:10px}.searchrow #keyboardToggle{min-width:64px}}
+
+/* ARK V1.3.4: Focus UI - every module uses a single compact header. */
+.module-mode .path,.module-mode .mainheading,.module-mode .overview-label,
+.module-mode #topicsPanel,.module-mode .topics-panel,.module-mode .voice-indicator,
+.module-mode #clearSearch,.module-mode #wikiSearchButton,
+.module-mode #keyboardToggle,.module-mode #voicebtn,
+.module-mode .wiki-header,.module-mode .wiki-controls,
+.module-mode .nrw3d-toolbar{display:none!important}
+.module-mode .sec-head{display:flex!important;align-items:center;margin:0 0 8px!important;gap:8px}
+.module-mode[data-active-module="bible"] .sec-head,.module-mode[data-active-module="settings"] .sec-head{display:flex!important}
+.module-mode .searchrow{display:flex!important;flex-wrap:nowrap!important;align-items:center;width:100%;gap:11px}
+.module-mode .searchrow #search{display:block!important;flex:1 1 auto;width:100%;height:49px;min-width:0;
+ font-size:16px;padding:11px 15px;background:#09191c;border:1px solid #477567;border-radius:7px}
+.module-mode .searchrow #moduleBack{display:inline-flex!important;align-items:center;justify-content:center;
+ flex:0 0 auto;min-height:49px;border:1px solid #4b8e7f;border-radius:7px;font-size:13px}
+.module-mode .main{padding-top:15px!important;padding-bottom:12px!important}
+.module-mode .wiki-panel{padding:0!important;margin:8px 0 0!important;border:0!important;background:transparent!important}
+.module-mode #wikiFrame{display:block;width:100%;height:calc(100dvh - 183px);min-height:360px;
+ border:1px solid #315e56!important;border-radius:7px}
+.module-mode .nrw3d-panel{margin-top:8px;height:calc(100dvh - 183px);min-height:360px}
+.module-mode .module-placeholder{width:100%;max-width:none;min-height:200px}
+.ark-content-focus{outline:3px solid #e6b767!important;outline-offset:2px!important;border-radius:7px}
+.module-mode .settings-panel,.module-mode .bible-panel{margin-top:8px}
+.module-mode .searchrow #search:focus{border-color:#edb96b!important}
+@media(max-width:800px){
+ .module-mode .searchrow{gap:6px!important}
+ .module-mode .searchrow #moduleBack{font-size:11px;min-width:93px;padding:7px 8px!important;white-space:normal;text-align:center}
+ .module-mode #wikiFrame,.module-mode .nrw3d-panel{height:calc(100dvh - 165px);min-height:280px}
+}
+
+.module-mode.ark-wiki-search-mode #atlasPanel,.module-mode.ark-wiki-search-mode #nrw3dPanel,
+.module-mode.ark-wiki-search-mode #biblePanel,.module-mode.ark-wiki-search-mode #settingsPanel,.module-mode.ark-wiki-search-mode #mediaPanel{display:none!important}
+.module-mode.ark-wiki-search-mode #wikiPanel{display:block!important}
+/* ARK V1.3.5 - compact two-row topic strip and blended offline source results. */
+.ark-quick-topics[hidden],.ark-local-results[hidden]{display:none!important}
+.module-mode .ark-quick-topics{display:block!important;margin:6px 0 8px}
+.ark-topic-rows{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(39px,auto));gap:6px}
+.ark-topic{min-height:39px;border:1px solid #355a52;border-radius:5px;background:#102825;color:#c9eddf;
+ text-align:center;padding:7px 5px;font:600 12px/1.25 'Segoe UI',sans-serif;overflow-wrap:anywhere}
+.ark-topic:hover,.ark-topic:focus-visible{border-color:#d5a85d;background:#1e4338;color:white}
+.ark-local-results{border:1px solid #37574f;border-radius:7px;background:#0b191bdc;padding:9px 11px;margin:8px 0}
+.ark-results-head{display:flex;gap:12px;align-items:center;margin-bottom:7px;font:10px Consolas,monospace;color:#91c9b4;letter-spacing:.08em}
+.ark-results-head strong{font-size:11px;color:#a7f2d0}
+.ark-wiki-hint{margin-left:auto;color:#8ba7a4}
+.ark-results-items{display:flex;gap:7px;flex-wrap:wrap}
+.ark-result{display:flex;align-items:center;gap:8px;max-width:min(100%,340px);min-height:48px;
+ border:1px solid #397163;background:#12302c;color:#e8fff3;border-radius:6px;text-align:left;padding:6px 11px}
+.ark-result:hover,.ark-result:focus-visible{background:#1b493d;border-color:#e0b46c}
+.ark-result-icon{font-size:20px;color:#9debc9;min-width:22px}
+.ark-result strong{display:block;font-size:12px}.ark-result small{display:block;margin-top:2px;font-size:10px;color:#aac3b9}
+.module-mode #wikiFrame{height:calc(100dvh - 266px);min-height:280px}
+.module-mode:has(.ark-local-results:not([hidden])) #wikiFrame{height:calc(100dvh - 352px);min-height:250px}
+.module-mode .nrw3d-panel{height:calc(100dvh - 266px);min-height:300px}
+@media(max-width:800px){.ark-topic{font-size:10px;min-height:37px;padding:7px 3px}.ark-topic-rows{gap:4px}
+ .ark-local-results{padding:8px}.ark-result{max-width:100%;flex:1 1 175px}
+ .module-mode #wikiFrame{height:calc(100dvh - 255px)}
+ .module-mode:has(.ark-local-results:not([hidden])) #wikiFrame{height:calc(100dvh - 345px)}}
+
+/* V1.3.7 - two fixed, explicitly approved Windows app launchers */
+.ark-apps-panel[hidden]{display:none!important}
+.ark-apps-panel{border:1px solid #2e6055;border-radius:7px;padding:18px;background:#071516;margin-top:10px}
+.ark-apps-heading{font:bold 12px Consolas,monospace;color:#94e5cf;letter-spacing:1px}
+.ark-apps-note,.ark-apps-state{font:12px Consolas,monospace;color:#9ec2b9}
+.ark-apps-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+.ark-app-item{display:flex;flex-direction:column;gap:7px;border:1px solid #215b4c;border-radius:5px;padding:13px;min-width:210px;flex:1 1 210px;background:#091e1b}
+.ark-app-item strong{color:#e0f4e9}.ark-app-item small{font:11px Consolas,monospace;color:#9dc7b8;overflow-wrap:anywhere}
+.ark-app-item button{align-self:flex-start;border:1px solid #31967d;background:#0c3a32;color:#d2ffef;border-radius:4px;padding:9px 14px;font-weight:bold;cursor:pointer}
+.ark-app-item button:disabled{opacity:.45;cursor:not-allowed}
+.ark-app-item button.ark-media-focus{border-color:#e9b978!important;background:#244338!important;outline:2px solid #e9b978!important;outline-offset:1px}
+.module-mode.ark-wiki-search-mode #appsPanel{display:none!important}
+/* V1.3.7 - actual I:\Media, never reorganize source directories */
+.ark-media-panel[hidden],.ark-media-setup[hidden],.ark-media-preview[hidden]{display:none!important}
+.ark-media-panel{display:block;border:1px solid #2e6055;border-radius:7px;background:#071516;padding:12px 14px;margin-top:9px;color:#d3e9df}
+.ark-media-toolbar,.ark-media-preview-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.ark-media-toolbar span{flex:1;color:#95cdbb;font:11px Consolas,monospace}
+.ark-media-sections{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:8px 0}
+.ark-media-sections button{border-radius:6px;border:1px solid #375950;background:#12302a;padding:12px 6px;min-height:49px;font-weight:650}
+.ark-media-sections button:hover,.ark-media-list button:hover,.ark-media-focus{border-color:#e9b978!important;background:#244338!important;outline:2px solid #e9b978!important;outline-offset:1px}
+.ark-media-path{color:#8fb5ac;font:11px Consolas,monospace;margin:10px 0 7px}
+.ark-media-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;overflow-y:auto;max-height:min(52vh,580px)}
+.ark-media-list button{background:#0e2425;color:#d1eadd;border:1px solid #31534c;border-radius:5px;min-height:46px;padding:7px 10px;text-align:left;overflow-wrap:anywhere}
+.ark-media-list button small{display:block;color:#789a95;font-size:10px;margin-top:2px}
+.ark-media-setup{background:#102021;border:1px solid #4c695c;padding:10px;margin:10px 0}
+.ark-media-setup input{background:#061517;color:#dbf4e6;min-width:200px;flex:1;max-width:100%;padding:9px;border:1px solid #56847a;border-radius:4px}
+.ark-media-preview{background:#0a171a;border:1px solid #375950;border-radius:6px;padding:10px;min-height:280px;margin-top:10px}
+.ark-media-preview-bar strong{flex:1;overflow-wrap:anywhere}.ark-media-preview-bar a{color:#a8e9c4}
+#mediaContent{overflow:auto;max-height:57vh}#mediaContent iframe{border:0;background:#fff;width:100%;min-height:55vh}
+#mediaContent img{max-height:50vh;max-width:100%;object-fit:contain}
+#mediaContent audio,#mediaContent video{width:100%;max-height:50vh}
+#mediaContent pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}
+
+/* V1.4.5.3 – native EPUB book reader / immersive fullscreen book viewing */
+.ark-media-preview.reading{position:fixed!important;inset:0!important;z-index:12000!important;margin:0!important;border:0!important;border-radius:0!important;background:#081312!important;padding:10px 16px!important;display:flex!important;flex-direction:column!important;min-height:100dvh!important;width:100vw!important;height:100dvh!important}
+.ark-media-preview:fullscreen{position:fixed!important;inset:0!important;background:#081312!important;display:flex!important;flex-direction:column!important;padding:10px 16px!important}
+.ark-media-preview.reading .ark-media-preview-bar,.ark-media-preview:fullscreen .ark-media-preview-bar{flex:0 0 auto;margin-bottom:7px;gap:6px}
+.ark-media-preview.reading .ark-media-preview-bar strong,.ark-media-preview:fullscreen .ark-media-preview-bar strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#mediaReaderFullscreen[hidden],#mediaReaderControls[hidden]{display:none!important}
+.ark-book-controls{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:6px 0 10px}
+.ark-book-controls button,.ark-book-controls select{border:1px solid #3e6c60;background:#102b28;color:#d9efe0;border-radius:5px;padding:8px;min-height:36px}
+.ark-book-controls select{flex:1 1 170px;min-width:130px;max-width:100%;font-size:12px}
+.ark-book-chapter-label{font:11px Consolas,monospace;color:#a4d4be}
+#mediaBookStatus{font:11px Consolas,monospace;color:#97beae}
+.ark-media-preview.reading #mediaContent,.ark-media-preview:fullscreen #mediaContent{max-height:none!important;min-height:0!important;flex:1!important;display:flex!important;flex-direction:column!important;overflow:auto!important}
+.ark-media-preview.reading #mediaContent iframe,.ark-media-preview:fullscreen #mediaContent iframe{flex:1!important;height:100%!important;min-height:0!important;width:100%!important;border:0!important}
+.ark-media-preview.reading #mediaContent pre,.ark-media-preview:fullscreen #mediaContent pre{margin:0 auto;max-width:920px;min-height:100%;width:100%;font:19px/1.8 Georgia,serif;white-space:pre-wrap;overflow-wrap:anywhere;background:#0b1717;color:#e0e9dd;padding:28px}
+.ark-media-preview.reading #mediaContent video,.ark-media-preview:fullscreen #mediaContent video{max-height:100%!important}
+@media(max-width:650px){.ark-media-preview.reading{padding:6px!important}.ark-book-controls{gap:4px}.ark-book-controls button{padding:6px 8px}.ark-media-preview.reading .ark-media-preview-bar a{display:none}}
+
+.ark-local-file{border-color:#576d45;background:#223129}.ark-local-file .ark-result-icon{color:#e9bb80}
+.ark-local-file small{word-break:break-word}
+@media(max-width:800px){.ark-media-sections{grid-template-columns:repeat(2,minmax(0,1fr))}.ark-media-list{grid-template-columns:1fr}}
+
+/* V1.3.8 – native, offline WebAudio MP3 player; no microphone or Line-In. */
+.ark-music{border:1px solid #316c59;border-radius:8px;background:#081b1c;padding:11px;margin:8px 0 14px;color:#d2f0e3}
+.ark-music-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px;font:11px Consolas,monospace;color:#98dfbd}
+.ark-music-head strong{font-size:12px;letter-spacing:.5px}.ark-music-head span{margin-left:auto;color:#a6bdb5}
+.ark-music button{border:1px solid #337866;color:#d7f6e8;background:#13362f;border-radius:5px;padding:7px 9px;cursor:pointer}
+.ark-music button:hover,.ark-music button:focus-visible{border-color:#e9b978;background:#215345}
+.ark-music button[aria-pressed="true"]{border-color:#e9b978;color:#f4c887}
+.ark-music-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(205px,1fr);gap:12px}
+.ark-music-stage{min-width:0}.ark-music-stage canvas{display:block;width:100%;height:156px;max-height:20vh;border-radius:6px;background:#030c0e}
+.ark-music-track{display:flex;flex-direction:column;gap:3px;padding:9px 0 6px;overflow:hidden}
+.ark-music-track strong{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ark-music-track small{font:10px Consolas,monospace;color:#9fbdb3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ark-music #musicAudio{display:block;width:100%;height:42px;max-height:none}
+.ark-music-transport{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ark-music-transport button{font-size:11px;min-height:34px}
+.ark-music-message{font:10px Consolas,monospace;color:#9abcb1;margin-top:8px;min-height:13px}
+.ark-music-library{display:flex;flex-direction:column;min-width:0;gap:6px}
+.ark-music-library label{color:#a8daca;font:10px Consolas,monospace}
+#musicFilter{padding:8px;border:1px solid #386b5d;background:#061315;color:#e3f7ef;border-radius:5px;width:100%;font-size:12px}
+.ark-music-list{min-height:110px;max-height:260px;overflow:auto;display:flex;flex-direction:column;gap:3px}
+.ark-music-list button{display:flex;flex-direction:column;align-items:stretch;text-align:left;flex:none;min-height:36px;gap:1px;padding:6px 9px}
+.ark-music-list button strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px}
+.ark-music-list button small{color:#8aa99e;font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ark-music-list button.music-current{border-color:#e7c27d;color:#ffe9b8;background:#23443a}
+@media(max-width:900px){.ark-music-grid{grid-template-columns:1fr}.ark-music-list{max-height:160px}.ark-music-stage canvas{height:115px}.ark-music{padding:9px}}
+
+
+/* Seraph/David LAB: compact source toggle beside song title. */
+.ark-music-meta-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}
+.ark-music-meta-row .ark-music-track{min-width:0;flex:1}
+.ark-music-audio-source{flex:none;min-width:130px;max-width:185px;min-height:36px;padding:7px 10px;border:1px solid #397e6f;border-radius:5px;background:#0c312b;color:#bff3de;font:700 11px Consolas,monospace;cursor:pointer;white-space:nowrap}
+.ark-music-audio-source:focus-visible{outline:2px solid #f7c979;outline-offset:2px}
+.ark-music-audio-source:hover{background:#155047}
+.ark-music-audio-source[aria-pressed="true"]{border-color:#68c7ad;color:#e2fff4}
+@media(max-width:600px){.ark-music-audio-source{min-width:106px;font-size:10px}}
+
+/* ARK 1.3.9: Original 24-effect Visualizer Studio embedded in ARK-03. */
+.ark-music-stage .ark-visualizer-frame{display:block;width:100%;height:230px;max-height:34vh;background:#030c0e;border:1px solid #2f6253;border-radius:6px}
+.ark-music-transport select{border:1px solid #337866;color:#d7f6e8;background:#13362f;border-radius:5px;padding:7px 9px;cursor:pointer;min-height:34px;min-width:155px;max-width:100%;font:11px Consolas,monospace}
+.ark-music-transport select:focus-visible{outline:2px solid #f7c979}
+@media(max-width:900px){.ark-music-stage .ark-visualizer-frame{height:190px;max-height:30vh}}
+/* ARK v1.4.2: playlist opt-in for integrated media downloader. */
+.ark-downloader{border:1px solid #347364;background:#081d1c;border-radius:8px;margin:10px 0 14px;overflow:hidden}
+.ark-downloader>summary{cursor:pointer;padding:13px 14px;color:#a9edcd;font:700 12px Consolas,monospace;letter-spacing:.04em;user-select:none}
+.ark-downloader[open]>summary{border-bottom:1px solid #274e44}
+.ark-download-body{padding:12px 14px 15px;display:grid;gap:11px}
+.ark-download-body label{font-size:12px;color:#bfe5d6}
+.ark-download-url{display:flex;flex-direction:column;gap:5px}
+.ark-download-url input,.ark-download-folder input{min-width:0;width:100%;border:1px solid #356858;background:#071517;color:#e0f8ed;border-radius:5px;padding:10px;font:12px Consolas,monospace}
+.ark-download-playlist{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;border:1px solid #2e6153;border-radius:6px;padding:9px 12px;background:#102a27}
+.ark-download-playlist label{color:#d5f4e4;font-weight:700;cursor:pointer}
+.ark-download-playlist input{accent-color:#74ddae;margin-right:6px}
+.ark-download-playlist span{color:#8db4a6;font:11px/1.45 Consolas,monospace}
+.ark-download-opts{display:flex;gap:12px;flex-wrap:wrap}
+.ark-download-opts label{border:1px solid #2e6153;border-radius:6px;padding:10px 13px;background:#102a27;cursor:pointer}
+.ark-download-opts input{accent-color:#74ddae;margin-right:6px}
+.ark-download-folder{display:flex;flex-direction:column;gap:5px}
+.ark-download-folder[hidden]{display:none!important}
+.ark-download-folder>div{display:flex;gap:7px}
+.ark-download-folder button,.ark-download-buttons button{border:1px solid #378c74;background:#143b33;color:#e0ffed;border-radius:5px;padding:8px 12px;cursor:pointer;font:700 11px Consolas,monospace}
+.ark-download-folder button:hover,.ark-download-buttons button:hover{border-color:#f5cd8e;background:#265243}
+.ark-download-buttons{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ark-download-buttons button:disabled{opacity:.45;cursor:default}
+#dlStart{background:#17684b;border-color:#4cc89a}
+.ark-download-progress{height:8px;background:#102e2a;border:1px solid #29584d;border-radius:8px;overflow:hidden}
+#dlProgressBar{height:100%;width:0;background:linear-gradient(90deg,#2e9c7d,#a0edb1);transition:width .25s}
+#dlMessage{color:#afd9c9;font:11px/1.45 Consolas,monospace;overflow-wrap:anywhere}
+#dlLog{white-space:pre-wrap;overflow-wrap:anywhere;font:10px/1.5 Consolas,monospace;color:#8caea3;max-height:110px;overflow-y:auto;padding:8px;background:#041110;border-radius:5px}
+.ark-download-note{color:#8db4a6;font:11px/1.45 Consolas,monospace}
+@media(max-width:650px){.ark-download-folder>div{flex-wrap:wrap}.ark-download-folder button{width:100%}}
+
+/* V1.4.4 Bible reader & internal offline ARK-04 tools */
+.ark-bible-reader{border:1px solid #376b5b;background:#091a1b;border-radius:9px;padding:12px;margin-top:9px;overflow:hidden}
+.ark-bible-top,.ark-bible-nav,.ark-util-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ark-bible-top{justify-content:space-between;color:#9edfc1;font:11px Consolas,monospace;padding:3px 2px 12px}
+.ark-bible-top #bibleChapterLabel{color:#d1ba8e}
+.ark-bible-nav{margin-bottom:11px}
+.ark-bible-nav label{font:10px Consolas,monospace;color:#9fdcc6;flex:1;min-width:110px}
+.ark-bible-nav select{display:block;margin-top:5px;width:100%;color:#d6f2e7;border:1px solid #396c5d;border-radius:5px;background:#102d2a;padding:9px;min-height:39px;font-size:13px}
+.ark-bible-nav button,.ark-util-actions button,.ark-util-card>button{min-height:38px;padding:8px 12px;border-radius:5px;border:1px solid #45816c;background:#103d33;color:#e0ffec}
+.ark-bible-nav button:hover,.ark-util-actions button:hover,.ark-util-card>button:hover{background:#205c4a}
+.ark-bible-stage{border:1px solid #325347;background:#0b1917;border-radius:6px;overflow:hidden}
+#bibleReaderFrame{display:block;width:100%;height:calc(100dvh - 350px);min-height:370px;background:#0e1b1b;border:0}
+.ark-bible-files{border:1px solid #2d574c;border-radius:6px;margin-top:10px;padding:10px}
+.ark-bible-files summary{font:12px Consolas,monospace;color:#9edfc1;cursor:pointer}
+.ark-bible-files .wiki-controls{display:flex!important}
+.ark-util-head{margin:24px 0 10px;color:#a3ebce;letter-spacing:1px;font:bold 12px Consolas,monospace}
+.ark-util-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ark-util-card{padding:15px;border:1px solid #315c50;background:#0b2321;border-radius:7px;min-width:0;display:flex;flex-direction:column;gap:10px}
+.ark-util-card h3{font:700 12px Consolas,monospace;letter-spacing:.07em;color:#b8efcf;margin:0}
+.ark-util-card p,.ark-util-card small{color:#a7c5b8;font-size:11px;line-height:1.55;margin:0}
+.ark-util-card input,.ark-util-card select{color:#e6faee;background:#09191b;border:1px solid #396456;border-radius:5px;padding:10px;max-width:100%;width:100%;min-width:0;font:12px Consolas,monospace}
+.ark-util-card label{font:11px/1.7 Consolas,monospace;color:#aed9c8;flex:1;min-width:105px}
+.ark-util-card label input{display:block}
+.ark-util-card output{display:block;overflow-wrap:anywhere;line-height:1.6;color:#a9ebc3}
+.ark-util-card .ark-util-timer{font:600 clamp(28px,4vw,48px) Consolas,monospace;color:#baf0d8;text-align:center;font-variant-numeric:tabular-nums;letter-spacing:.03em}
+.ark-retroarch-steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;color:#cfe9db;font:12px/1.55 Consolas,monospace}
+.ark-retroarch-steps strong{color:#b8efcf}
+.ark-util-time-fields{display:flex;gap:8px}
+.ark-util-time-fields label{min-width:0}
+.ark-util-hash{font:11px Consolas,monospace;word-break:break-all}
+.ark-util-wide{grid-column:1/-1}
+@media(max-width:820px){.ark-util-grid{grid-template-columns:1fr}.ark-bible-top{gap:6px;flex-wrap:wrap}#bibleReaderFrame{height:calc(100dvh - 390px);min-height:300px}}
+
+/* ARK 1.4.5 local Argos Translate; no remote translation API. */
+.ark-argos-pair,.ark-argos-columns{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:end}
+.ark-argos-columns{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+.ark-argos-pair>button{margin-bottom:3px;min-width:43px;min-height:43px;border:1px solid #467461;border-radius:6px;color:#d4f7df;background:#143b35}
+.ark-util-card textarea{display:block;width:100%;min-width:0;resize:vertical;min-height:160px;padding:12px;background:#09191b;color:#e9fff1;border:1px solid #37685b;border-radius:6px;font:14px/1.5 'Segoe UI',sans-serif;margin-top:6px}
+.ark-argos-models{border-top:1px solid #315c50;margin-top:5px;padding-top:10px;display:flex;flex-direction:column;gap:9px;font:12px Consolas,monospace;color:#afd9c5}
+#argosEngineStatus{font:11px Consolas,monospace;color:#b8e8d3;flex:1}
+#argosMessage{display:block;white-space:pre-wrap;font-size:12px}
+@media(max-width:800px){.ark-argos-columns{grid-template-columns:1fr}.ark-argos-pair{gap:5px}.ark-argos-pair label{min-width:0}}
+
+/* ARK 1.4.5.3 – Ollama local chat panel (model list/pull/delete + chat). */
+.ark-ollama-chat{min-height:160px;max-height:340px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding:10px;background:#09191b;border:1px solid #37685b;border-radius:6px}
+.ark-ollama-msg{padding:8px 10px;border-radius:6px;font:12px/1.55 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;max-width:92%}
+.ark-ollama-msg.user{align-self:flex-end;background:#15493c;color:#d8fbe6}
+.ark-ollama-msg.assistant{align-self:flex-start;background:#13262b;color:#cfe9db}
+.ark-ollama-msg.error{align-self:flex-start;background:#4a2330;color:#ffd3dc}
+#ollamaStatusLine{font:11px Consolas,monospace;color:#b8e8d3;flex:1}
+#ollamaPullState{display:block;white-space:pre-wrap;font-size:12px}
+
+/* ARK 1.4.5.1 – Tablet-style app launcher; local SVGs, no network icons. */
+.ark-app-launcher[hidden],.ark-util-card[hidden],.ark-music[hidden],.ark-downloader[hidden],
+.ark-media-toolbar[hidden],.ark-media-setup[hidden],.ark-media-sections[hidden],
+.ark-media-path[hidden],.ark-media-list[hidden],.ark-apps-list[hidden],
+.ark-apps-state[hidden],.ark-app-item[hidden],.ark-util-head[hidden]{display:none!important}
+.ark-app-launcher{margin:9px 0 18px;padding:16px 18px 20px;background:linear-gradient(165deg,#0b1d20,#081314);
+ border:1px solid #355b52;border-radius:12px;min-height:210px;box-shadow:0 16px 30px #0004}
+.ark-app-launcher-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.ark-app-launcher-head strong{font:700 12px Consolas,monospace;letter-spacing:.11em;color:#a8e9c9}
+.ark-app-launcher-head small{font:11px Consolas,monospace;color:#789f93}
+.ark-icon-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px 10px}
+.ark-icon-tile{border:1px solid transparent;border-radius:11px;background:transparent;color:#e0f8ea;
+ min-height:120px;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:start;
+ text-align:center;padding:11px 6px 7px;gap:9px;cursor:pointer;transition:background .12s,border-color .12s}
+.ark-icon-tile:hover,.ark-icon-tile:focus-visible,.ark-icon-tile.ark-media-focus{
+ background:#173d35;border-color:#67bda0;outline:2px solid #a6eac3;outline-offset:0}
+.ark-icon-graphic{width:66px;height:66px;border-radius:17px;display:grid;place-items:center;
+ color:#e6fff2;background:linear-gradient(145deg,var(--app-shade,#1f6a57),#0a2827);
+ border:1px solid #ffffff32;box-shadow:inset 0 1px 1px #ffffff29,0 7px 13px #0008}
+.ark-icon-graphic svg{width:33px;height:33px;stroke:currentColor;stroke-width:1.9;fill:none;
+ stroke-linecap:round;stroke-linejoin:round}
+.ark-icon-label{font:650 12px/1.3 system-ui,Segoe UI,sans-serif;overflow-wrap:anywhere;max-width:100%;color:#e0f5ea}
+.ark-icon-tile small{font:10px Consolas,monospace;color:#8bb9a4}
+.ark-tool-current{display:block;padding:0 0 11px;color:#91c3ac;font:700 11px Consolas,monospace;letter-spacing:.06em}
+.ark-tool-current[hidden]{display:none!important}
+body[data-ark-app] .ark-util-grid{grid-template-columns:1fr}
+body[data-ark-app] .ark-util-grid>.ark-util-card{grid-column:auto}
+body[data-ark-app] .ark-apps-panel{padding:14px}
+body[data-ark-app="music"] .ark-music{margin:0}
+body[data-ark-app="downloader"] .ark-downloader{margin:0}
+body[data-ark-app="files"] .ark-media-panel,body[data-ark-app="videos"] .ark-media-panel,body[data-ark-app="games"] .ark-media-panel{min-height:330px}
+@media(min-width:1500px){.ark-icon-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:850px){.ark-icon-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.ark-icon-tile{min-height:111px}.ark-icon-graphic{width:57px;height:57px;border-radius:15px}}
+@media(max-width:530px){.ark-app-launcher{padding:11px 8px}.ark-icon-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}.ark-icon-label{font-size:10px}.ark-icon-graphic{width:51px;height:51px}.ark-icon-tile{min-height:99px;padding:8px 3px}}
+
+/* ARK 1.4.5.4 – Zweispalten-Ansicht: App-Liste links, aktives Werkzeug rechts (ARK-03/ARK-04).
+   Nur Listen-Spalte und aktives Panel werden umgestellt (float statt flex auf .main), damit
+   Suchleiste/Kategorie-Buttons und andere Geschwister-Elemente unberührt bleiben. */
+.main.ark-split>.ark-app-launcher{float:left;width:260px;margin:9px 16px 18px 0;max-height:calc(100vh - 200px);overflow-y:auto}
+.main.ark-split>#appsPanel,.main.ark-split>#mediaPanel{overflow:hidden}
+.main.ark-split>.navhint{clear:both}
+.main.ark-split .ark-icon-grid{display:flex;flex-direction:column;gap:7px}
+.main.ark-split .ark-icon-tile{flex-direction:row;align-items:center;text-align:left;min-height:auto;padding:9px 10px;gap:11px}
+.main.ark-split .ark-icon-graphic{width:44px;height:44px;border-radius:10px;flex-shrink:0}
+.main.ark-split .ark-icon-graphic svg{width:22px;height:22px}
+.main.ark-split .ark-icon-tile small{display:block}
+@media(max-width:900px){.main.ark-split>.ark-app-launcher{float:none;width:100%;max-height:none;margin:9px 0 18px}}
+
+/* ARK 1.4.5.4 – Schwebendes, verschiebbares ZIP-Manager-Fenster. */
+.ark-float-window{position:fixed;top:96px;right:40px;z-index:90;width:min(430px,92vw);max-height:80vh;
+ display:flex;flex-direction:column;background:#0d2220;border:1px solid #e8bb74;border-radius:10px;
+ box-shadow:0 20px 60px #000b;overflow:hidden}
+.ark-float-window[hidden]{display:none!important}
+.ark-float-titlebar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;
+ background:#143430;border-bottom:1px solid #2e6055;cursor:grab;touch-action:none;
+ font:700 11px Consolas,monospace;letter-spacing:.07em;color:#d7f6e4;user-select:none}
+.ark-float-titlebar:active{cursor:grabbing}
+.ark-float-close{border:1px solid #6d3a3a;background:#2c1414;color:#f7b9b9;border-radius:5px;width:26px;height:26px;
+ font:700 14px/1 Consolas,monospace;display:grid;place-items:center}
+.ark-float-close:hover{background:#49201f}
+.ark-float-body{padding:16px;overflow-y:auto}
+.ark-float-body .ark-util-card{border:0;padding:0;background:transparent}
+/* ARK-0 portable installer dashboard V0.4 */
+#installDashboard{padding:18px;background:rgba(1,19,20,.94);border:1px solid #216f64;border-radius:10px;color:#d5f3ed}
+#installDashboard h2{font-size:19px;letter-spacing:1px;color:#9cead5;margin:0 0 9px}
+#installDashboard p{color:#a3c7c0;font-size:13px}
+.ark-install-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:14px 0}
+.ark-install-toolbar button,.ark-install-table button{background:#08483c;border:1px solid #278575;border-radius:5px;color:#c0f8e7;padding:9px 12px;cursor:pointer;font:inherit}
+.ark-install-toolbar button:hover,.ark-install-table button:hover{background:#126455}
+.ark-install-toolbar button:disabled,.ark-install-table button:disabled{opacity:.5;cursor:wait}
+.ark-install-scroll{overflow-x:auto;max-height:65vh;overflow-y:auto}
+.ark-install-table{border-collapse:collapse;width:100%;min-width:930px;font-size:12px;text-align:left}
+.ark-install-table th{position:sticky;top:0;background:#102b2c;color:#a3eddd;z-index:1;padding:12px 9px;border-bottom:2px solid #277d70}
+.ark-install-table td{padding:10px 9px;border-bottom:1px solid #1b4c47;vertical-align:middle}
+.ark-install-table tr:hover td{background:rgba(29,111,94,.15)}
+.ark-install-table td small{display:block;color:#819f9b;font-size:10px;padding-top:2px}
+.ark-install-table .install-path{font-family:monospace;overflow-wrap:anywhere;max-width:310px;color:#c0d9d5}
+.install-status{border-radius:5px;padding:4px 7px;white-space:nowrap;background:#493627;color:#f3d2a0}
+.install-status.yes{background:#16483b;color:#a8f0ce}
+.install-hint{color:#9daead;font-size:11px}
