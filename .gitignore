@@ -1,12 +1,33 @@
-# Personal/local state: install bindings contain this machine's own paths
-# (e.g. drive letters, media locations) and must never be committed.
-ARK_STATE/
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
 
-# Scratch/test artifacts
+# Models & large data
+whisper-runtime/
+models/
+*.zim
+*.gguf
+*.bin
+*.pt
+*.onnx
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Build & temp
 *.log
-_stage_test/
-_verify_extract/
+.last_build_id.txt
+tmp/
+dist/
+build/
 
-# Go build cache (none expected to be versioned here)
-src/*.exe
-src/*.test
+# Python
+__pycache__/
+*.pyc
+.venv/
