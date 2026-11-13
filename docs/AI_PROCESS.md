@@ -46,6 +46,18 @@ The numerous versioned notes and reports in the archive are the visible residue 
 - Path handling and external binary dependencies (Whisper, Kiwix, models) required constant human attention
 - Hardware-specific behavior cannot be fully simulated by the model
 
+## Later resolution: the "ARK 0" install dashboard
+
+The recurring path/dependency pain described above eventually became a dedicated
+feature rather than a one-off fix: a small dashboard where each external component
+reports whether it was found, offers a bounded local search, and lets the human
+manually bind a path through an app-owned, read-only file browser when auto-discovery
+fails. It does not remove the underlying dependency problem, but it turns repeated
+manual debugging into a one-time, UI-driven assignment – a good example of the
+"constrain the next prompt with the new reality" loop described above: the pain point
+first showed up repeatedly during ad-hoc fixes, and only then got generalized into its
+own module (see [`ARCHITECTURE.md`](ARCHITECTURE.md)).
+
 ## Key Lesson
 
 AI-native prototyping is extremely powerful for **breadth and speed**.  

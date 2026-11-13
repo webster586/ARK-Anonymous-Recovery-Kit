@@ -20,6 +20,9 @@ ARK is an offline-capable system designed as a personal recovery and knowledge e
 - Geographic data (Natural Earth + experimental NRW 3D)
 - Hardware control via Elgato Stream Deck (HID)
 - Modular tablet-oriented UI
+- Token-paired LAN remote access with a dedicated touch-first mobile companion UI
+- Resource/path resolution dashboard: components search for their own external files
+  (models, binaries, data) and the user can manually bind a path when auto-discovery fails
 
 The goal was **not** a polished product, but a fast, ambitious exploration of what becomes possible when modern local AI tooling meets classical systems programming and real hardware.
 
@@ -50,6 +53,7 @@ It serves as a realistic stress test of **AI-native prototyping speed** against 
 | Knowledge   | Kiwix + ZIM files                |
 | Hardware    | Elgato Stream Deck (HID)         |
 | Geo         | Natural Earth (GPKG / SQLite)    |
+| Remote      | Token-paired LAN listener + dedicated mobile UI |
 | Build       | Cross-compilation from Go        |
 
 ---
@@ -78,11 +82,16 @@ Detailed process notes: [`docs/AI_PROCESS.md`](docs/AI_PROCESS.md)
 - Offline Wikipedia via Kiwix
 - Basic document/media modules
 - Natural Earth atlas (read-only)
+- LAN-based mobile companion UI (QR-paired touch interface: downloader, player, maps, reader, native tools)
+- Component/resource install dashboard (search-and-bind for external tools, models and data files)
+- Automatic child-process cleanup on exit via a Windows Job Object (kills orphaned helper processes even on a hard kill/crash)
 
 **Known limitations:**
 - Not production-ready
 - Some modules remain experimental
-- Depends on correct local paths and pre-downloaded models/data
+- Several components still rely on pre-downloaded external models/binaries; the
+  install dashboard helps locate and manually bind existing files, but acquiring
+  large external data (e.g. downloading a model) is not itself automated
 - UI modularization is partial (shared global state still exists)
 - Hardware testing limited to a specific Stream Deck revision
 
@@ -116,6 +125,13 @@ scripts/       → Setup and launch scripts
 configs/       → Runtime configuration
 assets/        → Icons and static assets
 ```
+
+> **Note on repository scope:** This public repository is a representative source
+> snapshot, trimmed for size and privacy. The full private build has moved on since
+> this snapshot and includes a few additional modules described in
+> [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) (mobile UI, LAN remote access,
+> process cleanup, the resource install dashboard) that are not all fully reflected
+> in this trimmed copy of `src/`.
 
 ---
 
