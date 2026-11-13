@@ -4,7 +4,7 @@ ARK V0.5 – BIBEL (Ordnerintegration, READ ONLY)
 Die bestehende Ordnerstruktur bleibt vollständig erhalten.
 Bibel-Standardordner: "Bibel" NEBEN DER ARK EXE, eine Ebene darüber im
 Laufwerksstamm (z. B. wenn die EXE in einem eigenen Produktionsordner wie
-"ARK - Anonymous Recovery Kit" liegt), ODER gesammelt in Media\Bibel.
+"ARK - Autonomous Recovery Kit" liegt), ODER gesammelt in Media\Bibel.
 Beispiel: I:\Media\Bibel.
 Bei anderer Lage: in ARK auf BIBEL -> ORDNER -> vollständigen Pfad eingeben.
 

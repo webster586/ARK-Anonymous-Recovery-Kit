@@ -1,4 +1,4 @@
-# ARK – Anonymous Recovery Kit
+# ARK – Autonomous Recovery Kit
 
 **Offline-first recovery & knowledge tablet prototype**  
 Built as an AI-native rapid prototype exploring local AI, hardware integration, and resilient offline computing.

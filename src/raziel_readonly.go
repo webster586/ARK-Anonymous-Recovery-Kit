@@ -36,7 +36,7 @@ func razielReadOnlyInventory() razielInfo {
  } else { roots=[]string{"/"} }
  // Inspect only fixed, predictable paths. Do not walk arbitrary drive trees.
  targets:=[]struct{kind,sub string}{
-  {"ARK-Anwendung","ARK - Anonymous Recovery Kit"},
+  {"ARK-Anwendung","ARK - Autonomous Recovery Kit"},
   {"ARK-Medien","Media"},
   {"Buecher","Media\\Bücher"},
   {"Kiwix Wikipedia","Media\\Wikipedia"},
@@ -44,7 +44,7 @@ func razielReadOnlyInventory() razielInfo {
   {"Geodaten","Media\\Geodaten"},
   {"KI-Modelle","Media\\AI"},
   {"Videos","Media\\Videos"},
-  {"Bibel","ARK - Anonymous Recovery Kit\\Bibel"},
+  {"Bibel","ARK - Autonomous Recovery Kit\\Bibel"},
  }
  seen:=map[string]bool{}
  for _,root:=range roots {
