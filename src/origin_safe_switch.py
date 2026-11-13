@@ -196,7 +196,7 @@ def register_existing(lab, root, folder, fallback):
         raise ValueError('Registrierung benoetigt absoluten LAB-Pfad')
     folder = folder.absolute()
     if folder.parent != lab or folder == root or folder.name in ('OriginSwitch',):
-        raise ValueError('Nur direkte Unterordner von <lab-workspace> erlaubt')
+        raise ValueError('Nur direkte Unterordner des LAB-Verzeichnisses erlaubt')
     if not folder.is_dir() or is_linklike(folder):
         raise ValueError('LAB-Ordner fehlt oder ist verlinkt')
     if fallback and str(folder).casefold() == str(fallback.get('directory', '')).casefold():

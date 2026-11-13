@@ -27,6 +27,9 @@ tmp/
 dist/
 build/
 
+# Local runtime state (contains machine-specific paths)
+ARK_STATE/install_bindings.json
+
 # Python
 __pycache__/
 *.pyc

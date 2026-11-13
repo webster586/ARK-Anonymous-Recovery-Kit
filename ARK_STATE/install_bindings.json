@@ -1,7 +1,3 @@
 ﻿{
-    "paths":  {
-                  "kiwix_serve":  "<project-root>\\Versions\\ARK_RELEASE_0502\\kiwix-tools\\kiwix-serve.exe",
-                  "kiwix_search":  "<project-root>\\Versions\\ARK_RELEASE_0502\\kiwix-tools\\kiwix-search.exe",
-                  "wikipedia":  "<media-root>\\Wikipedia\\wikipedia_de_all_maxi_2026-10.zim"
-              }
+    "paths":  {}
 }
